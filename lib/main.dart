@@ -12,6 +12,7 @@ class MSOF extends StatelessWidget {
     return MaterialApp(
       title: 'MutstackOverflow',
       theme: ThemeData(
+        fontFamily: 'NotoSans',
         primarySwatch: Colors.grey,
       ),
       home: HomePage(),
