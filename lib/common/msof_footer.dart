@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:msof_front/utils/launch_url.dart';
 
+import '../utils/launch_url.dart';
 import '../color.dart';
 import '../constants.dart';
 import 'responsive_container.dart';
@@ -12,7 +12,7 @@ class MSOFFooter extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
+        SelectableText(
           "Social accounts",
           style: TextStyle(
             color: blueGray300,
@@ -40,7 +40,7 @@ class MSOFFooter extends StatelessWidget {
   }
 
   Widget _buildCopyRight() {
-    return Text(
+    return SelectableText(
       'COPYRIGHT © 2021 KOOKMIN-LIKELION.',
       style: TextStyle(
         color: blueGray300,
@@ -57,7 +57,7 @@ class MSOFFooter extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              SelectableText(
                 "${item.name[0].toUpperCase()}${item.name.substring(1)}",
                 style: TextStyle(
                   color: blueGray300,
@@ -66,9 +66,10 @@ class MSOFFooter extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 5),
-              Text(
+              SelectableText(
                 "${item.value}",
                 style: TextStyle(
+                  height: 1,
                   color: Colors.white,
                   fontSize: 14,
                 ),
@@ -99,7 +100,7 @@ class MSOFFooter extends StatelessWidget {
           height: 1,
         ),
         SizedBox(height: 20),
-        Text(
+        SelectableText(
           'COPYRIGHT © 2021 KOOKMIN-LIKELION.',
           style: TextStyle(
             color: blueGray300,
@@ -121,7 +122,7 @@ class MSOFFooter extends StatelessWidget {
             Container(
               color: Colors.blueGrey,
               width: 2,
-              height: 150,
+              height: 100,
               margin: const EdgeInsets.symmetric(horizontal: 20),
             ),
             _buildInformation(),
