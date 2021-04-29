@@ -40,7 +40,7 @@ class CarouselState extends State<Carousel> {
   int currentIndex = 0;
   final isHovered = List.generate(images.length, (index) => false);
   final List<String> labels = List.generate(images.length, (index) {
-    return "대충 공지사항 $index";
+    return '대충 공지사항 $index';
   });
 
   @override
