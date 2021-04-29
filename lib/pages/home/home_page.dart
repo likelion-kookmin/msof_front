@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                "멋쟁이 스택이 흘러넘쳐유~",
+                '멋쟁이 스택이 흘러넘쳐유~',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: () {},
                 child: Text(
-                  "질문하러가기",
+                  '질문하러가기',
                   style: TextStyle(fontSize: 20),
                 ),
               ),
