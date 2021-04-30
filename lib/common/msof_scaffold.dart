@@ -15,7 +15,7 @@ class MSOFScaffold extends StatelessWidget {
     // Footer 삽입
 
     return Scaffold(
-      appBar: MSOFAppBar("MutstackOverflow"),
+      appBar: MSOFAppBar('MutstackOverflow'),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(

@@ -13,7 +13,7 @@ class MSOFFooter extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SelectableText(
-          "Social accounts",
+          'Social accounts',
           style: TextStyle(
             color: blueGray300,
             fontSize: 18,
@@ -58,7 +58,7 @@ class MSOFFooter extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SelectableText(
-                "${item.name[0].toUpperCase()}${item.name.substring(1)}",
+                '${item.name[0].toUpperCase()}${item.name.substring(1)}',
                 style: TextStyle(
                   color: blueGray300,
                   fontSize: 18,
@@ -67,7 +67,7 @@ class MSOFFooter extends StatelessWidget {
               ),
               SizedBox(height: 5),
               SelectableText(
-                "${item.value}",
+                '${item.value}',
                 style: TextStyle(
                   height: 1,
                   color: Colors.white,
