@@ -15,20 +15,23 @@ class MSOFScaffold extends StatelessWidget {
     // Footer 삽입
 
     return Scaffold(
-      appBar: MSOFAppBar('MutstackOverflow'),
+      // appBar: MSOFAppBar('MutstackOverflow'),
+      backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: <Widget>[
+            SingleChildScrollView(
+              child: Container(
+                child: Column(
+                  children: [
+                    MSOFAppBar('MutstackOverflow'),
+                    ...children,
+                    MSOFFooter(),
+                  ],
+                ),
+              ),
             ),
-            child: Column(
-              children: [
-                ...children,
-                MSOFFooter(),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );

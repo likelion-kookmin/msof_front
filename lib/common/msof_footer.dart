@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:msof_front/common/divider.dart';
 
 import '../utils/launch_url.dart';
 import '../color.dart';
@@ -7,6 +8,18 @@ import '../constants.dart';
 import 'responsive_container.dart';
 
 class MSOFFooter extends StatelessWidget {
+  final footerGroupTextStyle = TextStyle(
+    color: textColor,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+
+  final footerContentTextStyle = TextStyle(
+    color: textColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
   Widget _buildSocialIcons() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -14,11 +27,7 @@ class MSOFFooter extends StatelessWidget {
       children: [
         SelectableText(
           'Social accounts',
-          style: TextStyle(
-            color: blueGray300,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: footerGroupTextStyle,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -26,7 +35,7 @@ class MSOFFooter extends StatelessWidget {
           children: [
             for (final item in socialAccounts)
               IconButton(
-                color: Colors.white,
+                color: textColor,
                 padding: const EdgeInsets.all(10),
                 icon: FaIcon(item.icon, size: 30),
                 onPressed: () {
@@ -43,7 +52,7 @@ class MSOFFooter extends StatelessWidget {
     return SelectableText(
       'COPYRIGHT © 2021 KOOKMIN-LIKELION.',
       style: TextStyle(
-        color: blueGray300,
+        color: textColor,
         fontSize: 14,
       ),
     );
@@ -59,20 +68,12 @@ class MSOFFooter extends StatelessWidget {
             children: [
               SelectableText(
                 '${item.name[0].toUpperCase()}${item.name.substring(1)}',
-                style: TextStyle(
-                  color: blueGray300,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: footerGroupTextStyle,
               ),
               SizedBox(height: 5),
               SelectableText(
                 '${item.value}',
-                style: TextStyle(
-                  height: 1,
-                  color: Colors.white,
-                  fontSize: 14,
-                ),
+                style: footerContentTextStyle,
               ),
               SizedBox(height: 15)
             ],
@@ -87,7 +88,7 @@ class MSOFFooter extends StatelessWidget {
         _buildSocialIcons(),
         SizedBox(height: 20),
         Container(
-          color: Colors.blueGrey,
+          color: textColor,
           width: double.maxFinite,
           height: 1,
         ),
@@ -95,7 +96,7 @@ class MSOFFooter extends StatelessWidget {
         _buildInformation(),
         SizedBox(height: 20),
         Container(
-          color: Colors.blueGrey,
+          color: textColor,
           width: double.maxFinite,
           height: 1,
         ),
@@ -103,7 +104,7 @@ class MSOFFooter extends StatelessWidget {
         SelectableText(
           'COPYRIGHT © 2021 KOOKMIN-LIKELION.',
           style: TextStyle(
-            color: blueGray300,
+            color: textColor,
             fontSize: 14,
           ),
         ),
@@ -114,28 +115,18 @@ class MSOFFooter extends StatelessWidget {
   Widget _buildFooter() {
     return Column(
       children: [
+        divider,
+        SizedBox(height: 20),
         Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildSocialIcons(),
-            Container(
-              color: Colors.blueGrey,
-              width: 2,
-              height: 100,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-            ),
+            SizedBox(width: 40),
             _buildInformation(),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            color: Colors.blueGrey,
-            width: double.maxFinite,
-            height: 1,
-          ),
-        ),
+        divider,
         SizedBox(height: 20),
         _buildCopyRight(),
       ],
@@ -144,18 +135,12 @@ class MSOFFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle(
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 14,
-      ),
-      child: Container(
-        color: Colors.black,
-        padding: EdgeInsets.all(30),
-        child: ResponsiveContainer.isSmallScreen(context)
-            ? _buildSmallFooter()
-            : _buildFooter(),
-      ),
+    return Container(
+      color: backgroundColor,
+      padding: EdgeInsets.all(30),
+      child: ResponsiveContainer.isSmallScreen(context)
+          ? _buildSmallFooter()
+          : _buildFooter(),
     );
   }
 }
