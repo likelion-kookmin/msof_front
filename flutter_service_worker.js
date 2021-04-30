@@ -19,8 +19,8 @@ const RESOURCES = {
 "assets/assets/fonts/NotoSansKR-Regular.otf": "913f146b0200b19b17eb4de8b4427a9c",
 "assets/assets/fonts/NotoSansKR-Bold.otf": "b59ac7cf449e57469daf2480fafbddf4",
 "assets/FontManifest.json": "97e3b1ca64c3b803d61a134a59ebdb32",
-"index.html": "faf178ea8891370adc99d1a4a9b99c23",
-"/": "faf178ea8891370adc99d1a4a9b99c23"
+"index.html": "cdcf08b5c11d2548e0d86ebd6b4162fd",
+"/": "cdcf08b5c11d2548e0d86ebd6b4162fd"
 };
 
 // The application shell files that are downloaded before a service worker can
