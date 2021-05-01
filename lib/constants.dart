@@ -1,6 +1,13 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:msof_front/models/contact_us.dart';
 
+// AppbarTitle
+final appBarTitle = 'MutstackOverflow';
+
+// API base url
+const baseApiUrl = 'http://54.65.162.242';
+
+// Footer Information
 final socialAccounts = [
   ContactUs(
     name: 'facebook',
@@ -19,6 +26,7 @@ final socialAccounts = [
   ),
 ];
 
+// Footer information
 final contactUs = [
   ContactUs(
     name: 'email',
