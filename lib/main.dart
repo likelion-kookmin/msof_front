@@ -3,6 +3,7 @@ import 'package:msof_front/color.dart';
 import 'package:msof_front/pages/auth/login.dart';
 import 'package:msof_front/pages/home/home_page.dart';
 import 'package:msof_front/routes.dart';
+import 'package:msof_front/utils/screen_size_util.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
@@ -16,18 +17,19 @@ class MSOF extends StatelessWidget {
       title: 'MutstackOverflow',
       theme: ThemeData(
         fontFamily: 'NotoSans',
+        primaryColor: likelionOrangePrimary,
+        primaryIconTheme: IconThemeData(color: textColor),
       ),
       builder: (context, widget) => ResponsiveWrapper.builder(
         BouncingScrollWrapper.builder(context, widget!),
-        maxWidth: 1200,
-        minWidth: 450,
+        maxWidth: ScreenSizeUtil.desktop,
+        minWidth: ScreenSizeUtil.mobile,
         defaultScale: true,
         breakpoints: [
-          ResponsiveBreakpoint.resize(450, name: MOBILE),
-          ResponsiveBreakpoint.autoScale(800, name: TABLET),
-          ResponsiveBreakpoint.autoScale(1000, name: TABLET),
-          ResponsiveBreakpoint.resize(1200, name: DESKTOP),
-          ResponsiveBreakpoint.autoScale(2460, name: '4K'),
+          ResponsiveBreakpoint.resize(ScreenSizeUtil.mobile),
+          ResponsiveBreakpoint.autoScale(ScreenSizeUtil.tablet),
+          ResponsiveBreakpoint.autoScale(ScreenSizeUtil.desktop),
+          ResponsiveBreakpoint.resize(ScreenSizeUtil.widescreen),
         ],
         background: Container(color: sideColor),
       ),
