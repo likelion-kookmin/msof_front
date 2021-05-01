@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:msof_front/common/divider.dart';
-
-import '../utils/launch_url.dart';
-import '../color.dart';
-import '../constants.dart';
-import 'responsive_container.dart';
+import 'package:msof_front/utils/screen_size_util.dart';
+import 'package:msof_front/utils/launch_url.dart';
+import 'package:msof_front/color.dart';
+import 'package:msof_front/constants.dart';
 
 class MSOFFooter extends StatelessWidget {
   final footerGroupTextStyle = TextStyle(
@@ -85,21 +84,15 @@ class MSOFFooter extends StatelessWidget {
   Widget _buildSmallFooter() {
     return Column(
       children: [
+        divider,
+        SizedBox(height: 20),
         _buildSocialIcons(),
         SizedBox(height: 20),
-        Container(
-          color: textColor,
-          width: double.maxFinite,
-          height: 1,
-        ),
+        divider,
         SizedBox(height: 20),
         _buildInformation(),
         SizedBox(height: 20),
-        Container(
-          color: textColor,
-          width: double.maxFinite,
-          height: 1,
-        ),
+        divider,
         SizedBox(height: 20),
         SelectableText(
           'COPYRIGHT © 2021 KOOKMIN-LIKELION.',
@@ -138,7 +131,7 @@ class MSOFFooter extends StatelessWidget {
     return Container(
       color: backgroundColor,
       padding: EdgeInsets.all(30),
-      child: ResponsiveContainer.isSmallScreen(context)
+      child: ScreenSizeUtil.onlyMobile(context)
           ? _buildSmallFooter()
           : _buildFooter(),
     );

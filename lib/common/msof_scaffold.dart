@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:msof_front/common/divider.dart';
+import 'package:msof_front/common/msof_menu.dart';
+import 'package:msof_front/constants.dart';
+import 'package:msof_front/utils/screen_size_util.dart';
 
 import 'msof_appbar.dart';
 import 'msof_footer.dart';
@@ -12,11 +16,11 @@ class MSOFScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Footer 삽입
-
     return Scaffold(
-      // appBar: MSOFAppBar('MutstackOverflow'),
       backgroundColor: Colors.white,
+      extendBodyBehindAppBar: ScreenSizeUtil.overDesktop(context),
+      endDrawer: MSOFMenu.getMobileMenu(context),
+      endDrawerEnableOpenDragGesture: ScreenSizeUtil.onlyMobile(context),
       body: SafeArea(
         child: Stack(
           children: <Widget>[
@@ -24,7 +28,12 @@ class MSOFScaffold extends StatelessWidget {
               child: Container(
                 child: Column(
                   children: [
-                    MSOFAppBar('MutstackOverflow'),
+                    MSOFAppBar(
+                      appBarTitle,
+                      actions: MSOFMenu.getMenu(context),
+                    ),
+                    divider,
+                    SizedBox(height: 30),
                     ...children,
                     MSOFFooter(),
                   ],
