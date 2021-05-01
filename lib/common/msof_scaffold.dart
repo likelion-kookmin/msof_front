@@ -29,7 +29,7 @@ class MSOFScaffold extends StatelessWidget {
                 child: Column(
                   children: [
                     MSOFAppBar(
-                      appBarTitle,
+                      Constants.appBarTitle,
                       actions: MSOFMenu.getMenu(context),
                     ),
                     divider,

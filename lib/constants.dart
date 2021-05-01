@@ -1,41 +1,51 @@
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:msof_front/models/contact_us.dart';
+import 'package:enum_to_string/enum_to_string.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-// AppbarTitle
-final appBarTitle = 'MutstackOverflow';
+enum Flavor { development, production }
 
-// API base url
-const baseApiUrl = 'http://54.65.162.242';
+@immutable
+class Constants {
+  const Constants({
+    required this.baseApiUrl,
+  });
 
-// Footer Information
-final socialAccounts = [
-  ContactUs(
-    name: 'facebook',
-    value: 'https://www.facebook.com/LikeLionKookmin',
-    icon: FontAwesomeIcons.facebook,
-  ),
-  ContactUs(
-    name: 'instagram',
-    value: 'https://www.instagram.com/likelion_kmu/',
-    icon: FontAwesomeIcons.instagram,
-  ),
-  ContactUs(
-    name: 'github',
-    value: 'https://github.com/likelion-kookmin',
-    icon: FontAwesomeIcons.github,
-  ),
-];
+  factory Constants.of() {
+    if (_instance != null) return _instance!;
 
-// Footer information
-final contactUs = [
-  ContactUs(
-    name: 'email',
-    value: 'kmu@likelion.org',
-    icon: FontAwesomeIcons.envelope,
-  ),
-  ContactUs(
-    name: 'address',
-    value: '서울 성북구 정릉로 77 (국민대학교)',
-    icon: FontAwesomeIcons.map,
-  ),
-];
+    final flavor = EnumToString.fromString(
+      Flavor.values,
+      const String.fromEnvironment('FLAVOR'),
+    );
+
+    switch (flavor) {
+      case Flavor.development:
+        _instance = Constants._dev();
+        break;
+      case Flavor.production:
+      default:
+        _instance = Constants._prd();
+    }
+    return _instance!;
+  }
+
+  factory Constants._dev() {
+    return const Constants(
+      baseApiUrl: 'http://localhost',
+    );
+  }
+
+  factory Constants._prd() {
+    return const Constants(
+      baseApiUrl: 'http://54.65.162.242',
+    );
+  }
+
+  // Constants instance
+  static Constants? _instance;
+
+  // AppbarTitle
+  static const String appBarTitle = 'MutstackOverflow';
+
+  final String baseApiUrl;
+}
