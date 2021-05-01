@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:msof_front/color.dart';
+import 'package:msof_front/pages/auth/login.dart';
 import 'package:msof_front/pages/home/home_page.dart';
 import 'package:msof_front/routes.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -38,6 +39,8 @@ class MSOF extends StatelessWidget {
             switch (settings.name) {
               case Routes.home:
                 return HomePage();
+              case Routes.login:
+                return LoginPage();
               default:
                 return SizedBox.shrink();
             }

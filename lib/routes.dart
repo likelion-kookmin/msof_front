@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 
 class Routes {
   static const String home = '/';
+  static const String login = '/auth/login';
+  static const String logout = '/auth/logout';
+  static const String signup = '/auth/signup';
 
   static Route<T> fadeThrough<T>(RouteSettings settings, WidgetBuilder page,
       {int duration = 300}) {
