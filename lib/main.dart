@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:msof_front/color.dart';
-import 'package:msof_front/pages/auth/login.dart';
-import 'package:msof_front/pages/home/home_page.dart';
 import 'package:msof_front/routes.dart';
 import 'package:msof_front/utils/screen_size_util.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
-  runApp(MSOF());
+  runApp(
+    ProviderScope(
+      child: MSOF(),
+    ),
+  );
 }
 
 class MSOF extends StatelessWidget {
@@ -34,21 +37,7 @@ class MSOF extends StatelessWidget {
         background: Container(color: sideColor),
       ),
       initialRoute: Routes.home,
-      onGenerateRoute: (RouteSettings settings) {
-        return Routes.fadeThrough(
-          settings,
-          (context) {
-            switch (settings.name) {
-              case Routes.home:
-                return HomePage();
-              case Routes.login:
-                return LoginPage();
-              default:
-                return SizedBox.shrink();
-            }
-          },
-        );
-      },
+      onGenerateRoute: Routes.onGenerateRoute,
       debugShowCheckedModeBanner: false,
     );
   }
