@@ -43,6 +43,7 @@ dependencies:
   dio:
   enum_to_string:
   freezed_annotation:
+  logger: ^1.0.0
   url_launcher: ^6.0.2
 
 dev_dependencies:
