@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:msof_front/pages/pages.dart';
 
 class Routes {
-  static const String home = '/';
+  static const String root = '/';
+  static const String home = '/home';
   static const String login = '/auth/login';
   static const String logout = '/auth/logout';
   static const String signup = '/auth/signup';
@@ -31,8 +32,13 @@ class Routes {
             return HomePage();
           case Routes.login:
             return LoginPage();
+          case Routes.logout:
+            return LogoutPage();
+          case Routes.signup:
+            return SignupPage();
+          case Routes.root:
           default:
-            return SizedBox();
+            return RootPage();
         }
       },
     );
