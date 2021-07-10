@@ -18,7 +18,7 @@ abstract class AbstractAuthAPI {
 
 class AuthAPI extends AbstractAuthAPI {
   late ApiClient _client;
-  final _baseUrl = '${Constants.of().baseApiUrl}/rest-auth';
+  final _baseUrl = '${Constants.of().baseApiUrl}/accounts/rest-auth';
 
   AuthAPI() {
     _client = ApiClient(_baseUrl, Dio());
