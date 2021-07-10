@@ -9,9 +9,9 @@ import 'package:msof_front/routes.dart';
 class RootPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    useProvider(authViewModelProvider);
-    Future.microtask(() {
-      if (context.read(authViewModelProvider).isAuthenticated) {
+    final authViewModel = useProvider(authViewModelProvider);
+    Future.delayed(Duration(milliseconds: 500), () {
+      if (authViewModel.isAuthenticated) {
         Navigator.pushReplacementNamed(context, Routes.home);
       } else {
         Navigator.pushReplacementNamed(context, Routes.login);

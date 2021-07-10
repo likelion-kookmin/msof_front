@@ -23,7 +23,10 @@ class ApiClient {
       ..options.connectTimeout = _defaultConnectTimeout
       ..options.receiveTimeout = _defaultReceiveTimeout
       ..httpClientAdapter
-      ..options.headers = {'Content-Type': 'application/json; charset=UTF-8'};
+      ..options.headers = {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Accept-Language': 'ko-KR'
+      };
     _dio.interceptors.addAll(interceptors ?? []);
     if (kDebugMode) {
       _dio.interceptors.add(

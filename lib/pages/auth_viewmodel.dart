@@ -1,67 +1,88 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:msof_front/api/api_exceptions.dart';
 import 'package:msof_front/api/auth_api.dart';
 import 'package:msof_front/models/user/user.dart';
-import 'package:msof_front/models/user/user_create.dart';
+import 'package:msof_front/utils/loading_notifier_mixin.dart';
+import 'package:msof_front/services/local_storage_service.dart';
 
-final authViewModelProvider = ChangeNotifierProvider(
-  (ref) => AuthViewModel(
-    ref.read(authApiProvider),
-  ),
-);
+final authViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AuthViewModel>((ref) {
+  // dispose -> dio 요청 취소
+  final cancelToken = CancelToken();
+  ref.onDispose(() => cancelToken.cancel());
 
-class AuthViewModel extends ChangeNotifier {
-  AuthViewModel(this.api);
+  final authApi = ref.read(authApiProvider);
+  final localStorageService = ref.read(localStorageServiceProvider);
 
-  final AuthAPI api;
+  // 상태보존
+  ref.maintainState = true;
 
-  String? _errorMsg;
-  User? _user;
+  return AuthViewModel(
+    ref.read,
+    authApi: authApi,
+    localStorageService: localStorageService,
+  );
+});
+
+class AuthViewModel extends LoadingNotifierMixin {
+  final Reader read;
+
+  final AuthAPI authApi;
+  final LocalStorageService _localStorageService;
+
+  /// Local storage에 저장되는 키 값
+  final userBoxKey = 'tokenUser';
+
+  AuthViewModel(
+    this.read, {
+    required this.authApi,
+    required LocalStorageService localStorageService,
+  }) : _localStorageService = localStorageService;
+
+  final _errorMsgStream = StreamController<String>.broadcast();
+
+  TokenUser? _user;
 
   bool get isAuthenticated => _user != null;
-  User? get user => _user;
-  String get errorMsg => _errorMsg ?? '';
+  TokenUser? get user => _user;
+  Stream<String> get errorMsgStream => _errorMsgStream.stream;
 
-  void notifyError(String errorMsg) {
-    _errorMsg = errorMsg;
+  /// Json 형식으로 User 저장
+  Future<void> saveUser(TokenUser user) async {
+    _user = user;
+    await _localStorageService.put(BoxName.auth, userBoxKey, user.toJson());
     notifyListeners();
   }
 
-  Future<void> login(String username, String password) {
-    return api.signin(username, password).then(
-          (result) => result.maybeWhen(
-            success: (user) {
-              _user = user;
-              notifyListeners();
-            },
-            failure: (error) {
-              notifyError(ApiExceptions.getErrorMessage(error));
-            },
-            orElse: () {},
-          ),
-        );
+  /// Json 형식으로 저장된 User를 TokenUser 객체로 변환
+  void loadUser() {
+    final userJson = _localStorageService.get(BoxName.auth, userBoxKey);
+    if (userJson == null) {
+      _user = null;
+    } else {
+      _user = TokenUser.fromJson(userJson);
+    }
   }
 
+  /// Form error 처리
+  void pushError(String errorMsg) {
+    _errorMsgStream.add(errorMsg);
+  }
+
+  /// Form error 초기화
+  void clearError() {
+    _errorMsgStream.add('');
+  }
+
+  /// 로그아웃
   Future<void> logout() {
-    return api
-        .signout()
-        .then((_) => _user = null)
-        .whenComplete(notifyListeners);
-  }
-
-  Future<void> signup(UserCreate user, String password1, String password2) {
-    return api.signup(user, password1, password2).then(
-          (result) => result.maybeWhen(
-            success: (user) {
-              _user = user;
-              notifyListeners();
-            },
-            failure: (error) {
-              throw error;
-            },
-            orElse: () {},
-          ),
-        );
+    return whileLoading(
+      () => authApi.signout().then((_) {
+        _user = null;
+        _localStorageService.delete(BoxName.auth, userBoxKey);
+      }).whenComplete(notifyListeners),
+    );
   }
 }

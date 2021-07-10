@@ -12,6 +12,186 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+TokenUser _$TokenUserFromJson(Map<String, dynamic> json) {
+  return _TokenUser.fromJson(json);
+}
+
+/// @nodoc
+class _$TokenUserTearOff {
+  const _$TokenUserTearOff();
+
+  _TokenUser call({String? token, User? user}) {
+    return _TokenUser(
+      token: token,
+      user: user,
+    );
+  }
+
+  TokenUser fromJson(Map<String, Object> json) {
+    return TokenUser.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $TokenUser = _$TokenUserTearOff();
+
+/// @nodoc
+mixin _$TokenUser {
+  String? get token => throw _privateConstructorUsedError;
+  User? get user => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TokenUserCopyWith<TokenUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TokenUserCopyWith<$Res> {
+  factory $TokenUserCopyWith(TokenUser value, $Res Function(TokenUser) then) =
+      _$TokenUserCopyWithImpl<$Res>;
+  $Res call({String? token, User? user});
+
+  $UserCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class _$TokenUserCopyWithImpl<$Res> implements $TokenUserCopyWith<$Res> {
+  _$TokenUserCopyWithImpl(this._value, this._then);
+
+  final TokenUser _value;
+  // ignore: unused_field
+  final $Res Function(TokenUser) _then;
+
+  @override
+  $Res call({
+    Object? token = freezed,
+    Object? user = freezed,
+  }) {
+    return _then(_value.copyWith(
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
+
+  @override
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$TokenUserCopyWith<$Res> implements $TokenUserCopyWith<$Res> {
+  factory _$TokenUserCopyWith(
+          _TokenUser value, $Res Function(_TokenUser) then) =
+      __$TokenUserCopyWithImpl<$Res>;
+  @override
+  $Res call({String? token, User? user});
+
+  @override
+  $UserCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class __$TokenUserCopyWithImpl<$Res> extends _$TokenUserCopyWithImpl<$Res>
+    implements _$TokenUserCopyWith<$Res> {
+  __$TokenUserCopyWithImpl(_TokenUser _value, $Res Function(_TokenUser) _then)
+      : super(_value, (v) => _then(v as _TokenUser));
+
+  @override
+  _TokenUser get _value => super._value as _TokenUser;
+
+  @override
+  $Res call({
+    Object? token = freezed,
+    Object? user = freezed,
+  }) {
+    return _then(_TokenUser(
+      token: token == freezed
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String?,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TokenUser implements _TokenUser {
+  const _$_TokenUser({this.token, this.user});
+
+  factory _$_TokenUser.fromJson(Map<String, dynamic> json) =>
+      _$_$_TokenUserFromJson(json);
+
+  @override
+  final String? token;
+  @override
+  final User? user;
+
+  @override
+  String toString() {
+    return 'TokenUser(token: $token, user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _TokenUser &&
+            (identical(other.token, token) ||
+                const DeepCollectionEquality().equals(other.token, token)) &&
+            (identical(other.user, user) ||
+                const DeepCollectionEquality().equals(other.user, user)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(token) ^
+      const DeepCollectionEquality().hash(user);
+
+  @JsonKey(ignore: true)
+  @override
+  _$TokenUserCopyWith<_TokenUser> get copyWith =>
+      __$TokenUserCopyWithImpl<_TokenUser>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_TokenUserToJson(this);
+  }
+}
+
+abstract class _TokenUser implements TokenUser {
+  const factory _TokenUser({String? token, User? user}) = _$_TokenUser;
+
+  factory _TokenUser.fromJson(Map<String, dynamic> json) =
+      _$_TokenUser.fromJson;
+
+  @override
+  String? get token => throw _privateConstructorUsedError;
+  @override
+  User? get user => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$TokenUserCopyWith<_TokenUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 User _$UserFromJson(Map<String, dynamic> json) {
   return _User.fromJson(json);
 }
@@ -21,8 +201,7 @@ class _$UserTearOff {
   const _$UserTearOff();
 
   _User call(
-      {String? token,
-      String? username,
+      {String? username,
       String? first_name,
       String? last_name,
       String? email,
@@ -30,7 +209,6 @@ class _$UserTearOff {
       String? university,
       String? point}) {
     return _User(
-      token: token,
       username: username,
       first_name: first_name,
       last_name: last_name,
@@ -51,7 +229,6 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
-  String? get token => throw _privateConstructorUsedError;
   String? get username => throw _privateConstructorUsedError;
   String? get first_name => throw _privateConstructorUsedError;
   String? get last_name => throw _privateConstructorUsedError;
@@ -70,8 +247,7 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
   $Res call(
-      {String? token,
-      String? username,
+      {String? username,
       String? first_name,
       String? last_name,
       String? email,
@@ -90,7 +266,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? token = freezed,
     Object? username = freezed,
     Object? first_name = freezed,
     Object? last_name = freezed,
@@ -100,10 +275,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? point = freezed,
   }) {
     return _then(_value.copyWith(
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -142,8 +313,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? token,
-      String? username,
+      {String? username,
       String? first_name,
       String? last_name,
       String? email,
@@ -163,7 +333,6 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? token = freezed,
     Object? username = freezed,
     Object? first_name = freezed,
     Object? last_name = freezed,
@@ -173,10 +342,6 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? point = freezed,
   }) {
     return _then(_User(
-      token: token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String?,
       username: username == freezed
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
@@ -209,13 +374,11 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_User implements _User {
   const _$_User(
-      {this.token,
-      this.username,
+      {this.username,
       this.first_name,
       this.last_name,
       this.email,
@@ -226,8 +389,6 @@ class _$_User implements _User {
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
 
-  @override
-  final String? token;
   @override
   final String? username;
   @override
@@ -245,15 +406,13 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(token: $token, username: $username, first_name: $first_name, last_name: $last_name, email: $email, name: $name, university: $university, point: $point)';
+    return 'User(username: $username, first_name: $first_name, last_name: $last_name, email: $email, name: $name, university: $university, point: $point)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _User &&
-            (identical(other.token, token) ||
-                const DeepCollectionEquality().equals(other.token, token)) &&
             (identical(other.username, username) ||
                 const DeepCollectionEquality()
                     .equals(other.username, username)) &&
@@ -277,7 +436,6 @@ class _$_User implements _User {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(token) ^
       const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(first_name) ^
       const DeepCollectionEquality().hash(last_name) ^
@@ -299,8 +457,7 @@ class _$_User implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {String? token,
-      String? username,
+      {String? username,
       String? first_name,
       String? last_name,
       String? email,
@@ -310,8 +467,6 @@ abstract class _User implements User {
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
-  @override
-  String? get token => throw _privateConstructorUsedError;
   @override
   String? get username => throw _privateConstructorUsedError;
   @override

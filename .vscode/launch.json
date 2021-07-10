@@ -46,8 +46,8 @@
         {
             "name": "All Devices - Dev",
             "configurations": [
-                "Web",
-                "Android"
+                "Web - dev",
+                "Android - dev"
             ],
         }
     ]

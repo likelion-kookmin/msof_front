@@ -16,7 +16,7 @@ final menuItems = [
   MSOFMenuItem(label: 'Home', route: Routes.home),
   MSOFMenuItem(label: '계정', route: ''),
   MSOFMenuItem(label: 'Sign in', route: Routes.login),
-  MSOFMenuItem(label: 'Sign out', route: Routes.login),
+  MSOFMenuItem(label: 'Sign out', route: Routes.logout),
   MSOFMenuItem(label: 'Sign up', route: Routes.signup),
 ];
 

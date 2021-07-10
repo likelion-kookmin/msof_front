@@ -10,9 +10,9 @@ import 'package:msof_front/models/user/user_create.dart';
 final authApiProvider = Provider<AuthAPI>((ref) => AuthAPI());
 
 abstract class AbstractAuthAPI {
-  Future<Result<User>> signin(String username, String password);
+  Future<Result<TokenUser>> signin(String username, String password);
   Future<void> signout();
-  Future<Result<User>> signup(
+  Future<Result<TokenUser>> signup(
       UserCreate user, String password1, String password2);
 }
 
@@ -25,13 +25,14 @@ class AuthAPI extends AbstractAuthAPI {
   }
 
   @override
-  Future<Result<User>> signin(String username, String password) async {
+  Future<Result<TokenUser>> signin(String username, String password) async {
     try {
       final response = await _client.post('/login/', data: {
         'username': username,
         'password': password,
       });
-      return Result.success(data: response);
+      final responseUser = TokenUser.fromJson(response);
+      return Result.success(data: responseUser);
     } catch (e) {
       return Result.failure(error: ApiExceptions.getDioException(e));
     }
@@ -48,7 +49,7 @@ class AuthAPI extends AbstractAuthAPI {
   }
 
   @override
-  Future<Result<User>> signup(
+  Future<Result<TokenUser>> signup(
       UserCreate user, String password1, String password2) async {
     try {
       final data = user.toJson();
@@ -57,9 +58,26 @@ class AuthAPI extends AbstractAuthAPI {
         'password2': password2,
       });
       final response = await _client.post('/registration/', data: data);
-      return Result.success(data: response);
+      final responseUser = TokenUser.fromJson(response);
+      return Result.success(data: responseUser);
     } catch (e) {
-      return Result.failure(error: ApiExceptions.getDioException(e));
+      final exception = ApiExceptions.getDioException(e);
+      if (exception == ApiExceptions.unauthorisedRequest()) {
+        // 중복된 사용자 이름, 이메일 에러 처리
+        if (e is DioError && e.response!.data is Map) {
+          final responseData = e.response!.data as Map;
+          var errorMessage = '';
+          responseData.forEach((key, value) {
+            errorMessage += '\n${value.toString()}\n';
+          });
+          errorMessage = errorMessage.replaceAll('[', '');
+          errorMessage = errorMessage.replaceAll(']', '');
+          return Result.failure(
+            error: ApiExceptions.defaultError(errorMessage.trim()),
+          );
+        }
+      }
+      return Result.failure(error: exception);
     }
   }
 }

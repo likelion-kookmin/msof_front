@@ -21,7 +21,7 @@ class MSOFAppBar extends StatelessWidget with PreferredSizeWidget {
     return MouseHover(
       opacityAnimation: false,
       child: GestureDetector(
-        onTap: () => Navigator.pushNamed(context, Routes.home),
+        onTap: () => Navigator.pushNamed(context, Routes.root),
         child: AutoSizeText(
           title,
           maxLines: 1,

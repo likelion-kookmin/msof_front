@@ -219,6 +219,7 @@ class _$RequestCancelledCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RequestCancelled implements RequestCancelled {
   const _$RequestCancelled();
 
@@ -364,6 +365,7 @@ class _$UnauthorisedRequestCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UnauthorisedRequest implements UnauthorisedRequest {
   const _$UnauthorisedRequest();
 
@@ -507,6 +509,7 @@ class _$BadRequestCopyWithImpl<$Res> extends _$ApiExceptionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$BadRequest implements BadRequest {
   const _$BadRequest();
 
@@ -662,6 +665,7 @@ class _$NotFoundCopyWithImpl<$Res> extends _$ApiExceptionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$NotFound implements NotFound {
   const _$NotFound(this.reason);
 
@@ -824,6 +828,7 @@ class _$MethodNotAllowedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$MethodNotAllowed implements MethodNotAllowed {
   const _$MethodNotAllowed();
 
@@ -969,6 +974,7 @@ class _$NotAcceptableCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$NotAcceptable implements NotAcceptable {
   const _$NotAcceptable();
 
@@ -1114,6 +1120,7 @@ class _$RequestTimeoutCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RequestTimeout implements RequestTimeout {
   const _$RequestTimeout();
 
@@ -1258,6 +1265,7 @@ class _$SendTimeoutCopyWithImpl<$Res> extends _$ApiExceptionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$SendTimeout implements SendTimeout {
   const _$SendTimeout();
 
@@ -1400,6 +1408,7 @@ class _$ConflictCopyWithImpl<$Res> extends _$ApiExceptionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Conflict implements Conflict {
   const _$Conflict();
 
@@ -1545,6 +1554,7 @@ class _$InternalServerErrorCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InternalServerError implements InternalServerError {
   const _$InternalServerError();
 
@@ -1690,6 +1700,7 @@ class _$NotImplementedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$NotImplemented implements NotImplemented {
   const _$NotImplemented();
 
@@ -1835,6 +1846,7 @@ class _$ServiceUnavailableCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$ServiceUnavailable implements ServiceUnavailable {
   const _$ServiceUnavailable();
 
@@ -1980,6 +1992,7 @@ class _$NoInternetConnectionCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$NoInternetConnection implements NoInternetConnection {
   const _$NoInternetConnection();
 
@@ -2125,6 +2138,7 @@ class _$FormatExceptionCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$FormatException implements FormatException {
   const _$FormatException();
 
@@ -2270,6 +2284,7 @@ class _$UnableToProcessCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UnableToProcess implements UnableToProcess {
   const _$UnableToProcess();
 
@@ -2427,6 +2442,7 @@ class _$DefaultErrorCopyWithImpl<$Res> extends _$ApiExceptionsCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$DefaultError implements DefaultError {
   const _$DefaultError(this.error);
 
@@ -2589,6 +2605,7 @@ class _$UnexpectedErrorCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UnexpectedError implements UnexpectedError {
   const _$UnexpectedError();
 

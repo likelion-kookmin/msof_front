@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:msof_front/pages/pages.dart';
 
 class Routes {
-  static const String root = '/';
-  static const String home = '/home';
-  static const String login = '/auth/login';
-  static const String logout = '/auth/logout';
-  static const String signup = '/auth/signup';
+  static const String root = 'root';
+  static const String home = 'home';
+  static const String login = 'login';
+  static const String logout = 'logout';
+  static const String signup = 'signup';
 
   static Route<T> fadeThrough<T>(RouteSettings settings, WidgetBuilder page,
       {int duration = 300}) {
@@ -26,7 +26,6 @@ class Routes {
       settings,
       (context) {
         print(settings);
-        print(settings.name);
         switch (settings.name) {
           case Routes.home:
             return HomePage();
