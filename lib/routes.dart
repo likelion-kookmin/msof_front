@@ -1,45 +1,39 @@
-import 'package:animations/animations.dart';
-import 'package:flutter/material.dart';
-import 'package:msof_front/pages/pages.dart';
+import 'package:msof_front/utils/string_extensions.dart';
 
 class Routes {
-  static const String root = 'root';
   static const String home = 'home';
   static const String login = 'login';
   static const String logout = 'logout';
   static const String signup = 'signup';
+  static const String notFound = '404';
+  static const String initial = home;
 
-  static Route<T> fadeThrough<T>(RouteSettings settings, WidgetBuilder page,
-      {int duration = 300}) {
-    return PageRouteBuilder<T>(
-      settings: settings,
-      transitionDuration: Duration(milliseconds: duration),
-      pageBuilder: (context, animation, secondaryAnimation) => page(context),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        return FadeScaleTransition(animation: animation, child: child);
-      },
-    );
-  }
+  static List<String> allRoutes = [
+    home.route,
+    login.route,
+    logout.route,
+    signup.route,
+    notFound.route,
+  ];
 
-  static Route onGenerateRoute(RouteSettings settings) {
-    return Routes.fadeThrough(
-      settings,
-      (context) {
-        print(settings);
-        switch (settings.name) {
-          case Routes.home:
-            return HomePage();
-          case Routes.login:
-            return LoginPage();
-          case Routes.logout:
-            return LogoutPage();
-          case Routes.signup:
-            return SignupPage();
-          case Routes.root:
-          default:
-            return RootPage();
-        }
-      },
-    );
-  }
+  static List<String> nonAuthRoutes = [
+    login.route,
+    signup.route,
+    notFound.route,
+  ];
+
+  static List<String> get authRoutes =>
+      allRoutes.where((route) => !nonAuthRoutes.contains(route)).toList();
+
+  // static Route<T> fadeThrough<T>(RouteSettings settings, WidgetBuilder page,
+  //     {int duration = 300}) {
+  //   return PageRouteBuilder<T>(
+  //     settings: settings,
+  //     transitionDuration: Duration(milliseconds: duration),
+  //     pageBuilder: (context, animation, secondaryAnimation) => page(context),
+  //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+  //       return FadeScaleTransition(animation: animation, child: child);
+  //     },
+  //   );
+  // }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:msof_front/color.dart';
 import 'package:msof_front/common/divider.dart';
 import 'package:msof_front/routes.dart';
+import 'package:msof_front/utils/route_utils.dart';
 import 'package:msof_front/utils/screen_size_util.dart';
 
 class MSOFMenuItem {
@@ -37,7 +38,7 @@ class MSOFMenu {
             return (item.divider)
                 ? divider
                 : TextButton(
-                    onPressed: () => Navigator.pushNamed(context, item.route),
+                    onPressed: () => RouteUtils.toNamed(context, item.route),
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       primary: likelionOrange,
@@ -96,7 +97,7 @@ class MSOFMobileMenu extends StatelessWidget {
           )
         : ListTile(
             title: Text(item.label),
-            onTap: () => Navigator.pushNamed(context, item.route),
+            onTap: () => RouteUtils.toNamed(context, item.route),
           );
   }
 

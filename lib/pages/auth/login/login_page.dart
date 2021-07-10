@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
 
   Widget _buildSignInButton() {
     return HookBuilder(builder: (context) {
-      final LoginViewModel = useProvider(loginViewModelProvider);
+      final loginViewModel = useProvider(loginViewModelProvider);
       return SizedBox(
         width: double.infinity,
         height: 40,
@@ -40,17 +40,17 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
           style: ElevatedButton.styleFrom(
             primary: likelionOrange,
           ),
-          onPressed: !LoginViewModel.isLoading
+          onPressed: !loginViewModel.isLoading
               ? () {
                   if (formKey.currentState!.validate()) {
-                    LoginViewModel.login(
+                    loginViewModel.login(
                       usernameController.text,
                       passwordController.text,
                     );
                   }
                 }
               : null,
-          child: !LoginViewModel.isLoading
+          child: !loginViewModel.isLoading
               ? Text(
                   title,
                   style: TextStyle(color: Colors.white),
@@ -67,9 +67,9 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
 
   Widget _buildErrorMsg() {
     return HookBuilder(builder: (context) {
-      final LoginViewModel = useProvider(loginViewModelProvider);
+      final loginViewModel = useProvider(loginViewModelProvider);
       return StreamBuilder(
-        stream: LoginViewModel.errorMsgStream,
+        stream: loginViewModel.errorMsgStream,
         builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.hasData) {
             return ErrorMsg(snapshot.data ?? '');

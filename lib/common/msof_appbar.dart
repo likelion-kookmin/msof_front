@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:msof_front/common/mouse_hover.dart';
 import 'package:msof_front/routes.dart';
+import 'package:msof_front/utils/route_utils.dart';
 import 'package:msof_front/utils/screen_size_util.dart';
 
 class MSOFAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -21,7 +22,7 @@ class MSOFAppBar extends StatelessWidget with PreferredSizeWidget {
     return MouseHover(
       opacityAnimation: false,
       child: GestureDetector(
-        onTap: () => Navigator.pushNamed(context, Routes.root),
+        onTap: () => RouteUtils.toNamed(context, Routes.initial),
         child: AutoSizeText(
           title,
           maxLines: 1,
