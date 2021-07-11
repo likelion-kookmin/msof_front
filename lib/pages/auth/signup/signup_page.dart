@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:msof_front/color.dart';
 import 'package:msof_front/common/loading.dart';
 import 'package:msof_front/common/msof_scaffold.dart';
-import 'package:msof_front/models/user/user_create.dart';
+import 'package:msof_front/models/user/user.dart';
 import 'package:msof_front/pages/auth/signup/signup_viewmodel.dart';
 import 'package:msof_front/pages/auth/widgets/email_field.dart';
 import 'package:msof_front/utils/screen_size_util.dart';

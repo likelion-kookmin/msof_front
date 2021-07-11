@@ -5,7 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:msof_front/api/api_exceptions.dart';
 import 'package:msof_front/api/auth_api.dart';
 import 'package:msof_front/models/user/user.dart';
-import 'package:msof_front/models/user/user_create.dart';
 import 'package:msof_front/services/local_storage_service.dart';
 
 final authServiceProvider = ChangeNotifierProvider<AuthService>((ref) {

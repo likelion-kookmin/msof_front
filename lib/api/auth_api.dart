@@ -5,7 +5,6 @@ import 'package:msof_front/api/api_client.dart';
 import 'package:msof_front/api/api_exceptions.dart';
 import 'package:msof_front/constants.dart';
 import 'package:msof_front/models/user/user.dart';
-import 'package:msof_front/models/user/user_create.dart';
 
 final authApiProvider = Provider<AuthAPI>((ref) => AuthAPI());
 

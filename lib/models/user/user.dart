@@ -28,3 +28,18 @@ class User with _$User {
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
+
+@freezed
+class UserCreate with _$UserCreate {
+  const factory UserCreate({
+    String? username,
+    String? first_name,
+    String? last_name,
+    String? email,
+    String? name,
+    String? university,
+  }) = _UserCreate;
+
+  factory UserCreate.fromJson(Map<String, dynamic> json) =>
+      _$UserCreateFromJson(json);
+}
