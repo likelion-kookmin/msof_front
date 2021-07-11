@@ -1,7 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:msof_front/color.dart';
-import 'package:msof_front/common/divider.dart';
+import 'package:msof_front/common/mouse_hover.dart';
 import 'package:msof_front/routes.dart';
+import 'package:msof_front/utils/route_utils.dart';
+import 'package:msof_front/utils/screen_size_util.dart';
 
 class MSOFAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
@@ -9,22 +11,27 @@ class MSOFAppBar extends StatelessWidget with PreferredSizeWidget {
 
   final String title;
 
-  MSOFAppBar(this.title) : preferredSize = Size.fromHeight(50.0);
+  final List<Widget> actions;
 
-  Widget _buildButton(BuildContext context, String label, String route) {
-    return TextButton(
-      onPressed: () => Navigator.pushNamed(context, route),
-      style: TextButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        primary: likelionOrange,
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 14,
-          color: textColor,
-          letterSpacing: 1,
+  MSOFAppBar(
+    this.title, {
+    this.actions = const [],
+  }) : preferredSize = Size.fromHeight(kToolbarHeight);
+
+  Widget _buildTitle(BuildContext context) {
+    return MouseHover(
+      opacityAnimation: false,
+      child: GestureDetector(
+        onTap: () => RouteUtils.toNamed(context, Routes.initial),
+        child: AutoSizeText(
+          title,
+          maxLines: 1,
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 30,
+            letterSpacing: 3,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       ),
     );
@@ -32,60 +39,14 @@ class MSOFAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-          ),
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-          child: Row(
-            children: <Widget>[
-              GestureDetector(
-                onTap: () => Navigator.popUntil(
-                    context, ModalRoute.withName(Navigator.defaultRouteName)),
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 30,
-                    letterSpacing: 3,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ),
-              Flexible(
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  child: Wrap(
-                    children: <Widget>[
-                      _buildButton(context, 'Home', Routes.home),
-                      _buildButton(context, 'Home', Routes.home),
-                      _buildButton(context, 'Home', Routes.home),
-                      _buildButton(context, 'Home', Routes.home),
-                      _buildButton(context, 'Home', Routes.home),
-                      _buildButton(context, 'Home', Routes.home),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        divider,
-        SizedBox(height: 30),
-      ],
+    return AppBar(
+      elevation: 0,
+      toolbarHeight: kToolbarHeight,
+      backgroundColor: Colors.white,
+      centerTitle: ScreenSizeUtil.onlyMobile(context),
+      automaticallyImplyLeading: ScreenSizeUtil.onlyMobile(context),
+      title: _buildTitle(context),
+      actions: actions,
     );
-    // AppBar(
-    //   title: Text(
-    //     title,
-    //     style: TextStyle(
-    //       color: Colors.white,
-    //     ),
-    //   ),
-    //   backgroundColor: Colors.black,
-    //   automaticallyImplyLeading: true,
-    // );
   }
 }

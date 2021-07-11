@@ -24,33 +24,41 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # 반응형 디자인
+  # 폰트, 아이콘
+  google_fonts:
+  font_awesome_flutter: ^9.0.0-nullsafety
+  cupertino_icons: ^1.0.2
+
+  # 디자인
+  animations: ^2.0.0
+  auto_size_text: ^3.0.0-nullsafety.0
+  carousel_slider: ^4.0.0-nullsafety.0
   responsive_framework:
 
-  # 구글 폰트 API
-  google_fonts: ^2.0.0
+  # 상태관리
+  hooks_riverpod: ^0.14.0+3
+  flutter_hooks: ^0.16.0
 
-  # Carousel 이미지
-  carousel_slider: ^4.0.0-nullsafety.0
-
-  # font awesome icon
-  font_awesome_flutter: ^9.0.0-nullsafety
-
-  # url 실행
+  # 유틸
+  dio:
+  enum_to_string:
+  freezed_annotation:
+  hive: ^2.0.4
+  hive_flutter: ^1.0.0
+  logger: ^1.0.0
   url_launcher: ^6.0.2
-
-  # 애니메이션
-  animations: ^2.0.0
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  url_strategy:
+  beamer: ^0.14.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  # Analyzer
   pedantic: ^1.11.0
+  build_runner:
+  freezed:
+  json_serializable:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -58,10 +66,3 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   uses-material-design: true
-
-  fonts:
-    - family: NotoSans
-      fonts:
-        - asset: assets/fonts/NotoSansKR-Regular.otf
-        - asset: assets/fonts/NotoSansKR-Bold.otf
-          weight: 700

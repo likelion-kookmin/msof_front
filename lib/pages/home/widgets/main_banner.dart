@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:msof_front/color.dart';
 import 'package:msof_front/common/mouse_hover.dart';
-import 'package:msof_front/common/responsive_container.dart';
+import 'package:msof_front/utils/screen_size_util.dart';
 
 class MainBanner extends StatefulWidget {
   @override
@@ -70,7 +70,7 @@ class _MainBannerState extends State<MainBanner> {
               );
             },
             options: CarouselOptions(
-              scrollPhysics: ResponsiveContainer.isSmallScreen(context)
+              scrollPhysics: ScreenSizeUtil.onlyTouch(context)
                   ? PageScrollPhysics()
                   : NeverScrollableScrollPhysics(),
               scrollDirection: Axis.horizontal,
