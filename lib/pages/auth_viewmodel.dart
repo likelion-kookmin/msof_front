@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:msof_front/models/user/user.dart';
@@ -21,8 +22,12 @@ class AuthViewModel extends ChangeNotifier {
   );
 
   bool get isAuthenticated => _authService.isAuthenticated;
+
   TokenUser? get user => _authService.user;
   Stream<String> get errorMsgStream => _authService.errorMsgStream;
+
+  void configAuthorizationHeader(Dio dio) =>
+      _authService.configAuthorizationHeader(dio);
 
   Future<void> saveUser(TokenUser user) async => _authService.saveUser(user);
   void loadUser() => _authService.loadUser();

@@ -6,7 +6,8 @@ import 'package:msof_front/api/api_exceptions.dart';
 import 'package:msof_front/constants.dart';
 import 'package:msof_front/models/user/user.dart';
 
-final authApiProvider = Provider<AuthAPI>((ref) => AuthAPI());
+final authApiProvider =
+    Provider.family<AuthAPI, Dio?>((ref, dio) => AuthAPI(dio: dio));
 
 abstract class AbstractAuthAPI {
   Future<Result<TokenUser>> signin(String username, String password);
@@ -19,8 +20,8 @@ class AuthAPI extends AbstractAuthAPI {
   late ApiClient _client;
   final _baseUrl = '${Constants.of().baseApiUrl}/accounts/rest-auth';
 
-  AuthAPI() {
-    _client = ApiClient(_baseUrl, Dio());
+  AuthAPI({Dio? dio}) {
+    _client = ApiClient(_baseUrl, dio);
   }
 
   @override
