@@ -5,24 +5,8 @@ import 'package:msof_front/routes.dart';
 import 'package:msof_front/utils/route_utils.dart';
 import 'package:msof_front/utils/screen_size_util.dart';
 
-class MSOFMenuItem {
-  final String label;
-  final String route;
-  bool get divider => label == '' || route == '';
-
-  MSOFMenuItem({required this.label, required this.route});
-}
-
-final menuItems = [
-  MSOFMenuItem(label: 'Home', route: Routes.home),
-  MSOFMenuItem(label: '계정', route: ''),
-  MSOFMenuItem(label: 'Sign in', route: Routes.login),
-  MSOFMenuItem(label: 'Sign out', route: Routes.logout),
-  MSOFMenuItem(label: 'Sign up', route: Routes.signup),
-];
-
 class MSOFMenu {
-  static List<Widget> getMenu(BuildContext context) {
+  static List<Widget> getMenu(BuildContext context, bool isAuthenticated) {
     return ScreenSizeUtil.onlyMobile(context)
         ? [
             Builder(
@@ -34,11 +18,11 @@ class MSOFMenu {
               ),
             ),
           ]
-        : menuItems.map((item) {
-            return (item.divider)
+        : Routes.getRouteInfos(isAuthenticated).map((item) {
+            return (item.type == RouteType.category)
                 ? divider
                 : TextButton(
-                    onPressed: () => RouteUtils.toNamed(context, item.route),
+                    onPressed: () => RouteUtils.toNamed(context, item.route!),
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       primary: likelionOrange,
@@ -47,7 +31,7 @@ class MSOFMenu {
                       shape: CircleBorder(),
                     ),
                     child: Text(
-                      item.label,
+                      item.title,
                       style: TextStyle(
                         fontSize: 14,
                         color: textColor,
@@ -58,12 +42,16 @@ class MSOFMenu {
           }).toList();
   }
 
-  static Widget getMobileMenu(BuildContext context) {
-    return MSOFMobileMenu();
+  static Widget getMobileMenu(bool isAuthenticated) {
+    return MSOFMobileMenu(isAuthenticated);
   }
 }
 
 class MSOFMobileMenu extends StatelessWidget {
+  final bool isAuthenticated;
+
+  MSOFMobileMenu(this.isAuthenticated);
+
   Widget _buildDrawerHeader() {
     return Container(
       padding: const EdgeInsets.only(top: 30, left: 20, bottom: 15),
@@ -80,8 +68,8 @@ class MSOFMobileMenu extends StatelessWidget {
     );
   }
 
-  Widget _buildDrawerItem(BuildContext context, MSOFMenuItem item) {
-    return (item.divider)
+  Widget _buildDrawerItem(BuildContext context, RouteInfo item) {
+    return (item.type == RouteType.category)
         ? Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -89,15 +77,15 @@ class MSOFMobileMenu extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 15),
                 child: Text(
-                  item.label,
+                  item.title,
                   style: TextStyle(color: Colors.black54, fontSize: 12),
                 ),
               ),
             ],
           )
         : ListTile(
-            title: Text(item.label),
-            onTap: () => RouteUtils.toNamed(context, item.route),
+            title: Text(item.title),
+            onTap: () => RouteUtils.toNamed(context, item.route!),
           );
   }
 
@@ -108,7 +96,8 @@ class MSOFMobileMenu extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           _buildDrawerHeader(),
-          ...menuItems.map((item) => _buildDrawerItem(context, item)),
+          ...Routes.getRouteInfos(isAuthenticated)
+              .map((item) => _buildDrawerItem(context, item)),
         ],
       ),
     );
