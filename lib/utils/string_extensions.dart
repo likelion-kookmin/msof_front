@@ -7,6 +7,7 @@ extension CapExtension on String {
       .join(' ');
 }
 
-extension RouteNameToRoute on String {
+extension RouteExtension on String {
   String get route => '/$this';
+  String get pathParameterId => '${this}Id';
 }
