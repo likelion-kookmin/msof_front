@@ -1,3 +1,6 @@
+import 'package:beamer/beamer.dart';
+import 'package:flutter/widgets.dart';
+import 'package:msof_front/utils/logger.dart';
 import 'package:msof_front/utils/string_extensions.dart';
 
 enum RouteType {
@@ -26,12 +29,31 @@ class Routes {
   static const String notFound = '404';
   static const String initial = home;
 
+  // generic CRUD routes
+  static const String create = 'create';
+  static const String list = 'list';
+  static const String update = 'update';
+
+  // questions
+  static final String question = 'question';
+  static final String questionCreate = '$question/$create';
+  static final String questionDetail = '$question/${question.pathParameterId}';
+  static final String questionList = '$question/$list';
+  static final String questionUpdate =
+      '$question/${question.pathParameterId}/$update';
+
   static List<String> allRoutes = [
     home.route,
     login.route,
     logout.route,
     signup.route,
     notFound.route,
+
+    // questions
+    questionCreate.route,
+    questionDetail.route,
+    questionList.route,
+    questionUpdate.route,
   ];
 
   static List<String> nonAuthRoutes = [
@@ -45,18 +67,28 @@ class Routes {
 
   static final List<RouteInfo> _routeInfos = [
     RouteInfo(title: 'Home', route: home),
+
+    // account
     RouteInfo(title: 'Account', type: RouteType.category),
     RouteInfo(title: 'Sign in', type: RouteType.nonAuth, route: login),
     RouteInfo(title: 'Sign up', type: RouteType.nonAuth, route: signup),
     RouteInfo(title: 'Sign out', route: logout),
+
+    // question
+    RouteInfo(title: 'Question', type: RouteType.category),
+    RouteInfo(title: 'Question list', route: questionList),
   ];
 
-  static List<RouteInfo> getRouteInfos(bool isAuthenticated) {
+  static List<RouteInfo> getRouteInfosByIsAuthenticated(bool isAuthenticated) {
     return _routeInfos
         .where((routeInfo) => isAuthenticated
             ? routeInfo.type != RouteType.nonAuth
             : routeInfo.type != RouteType.auth)
         .toList();
+  }
+
+  static RouteInfo getRouteInfoByRouteName(String routeName) {
+    return _routeInfos.firstWhere((element) => routeName == element.route);
   }
 
   // static Route<T> fadeThrough<T>(RouteSettings settings, WidgetBuilder page,
