@@ -26,5 +26,7 @@ class LoginViewModel extends LoadingNotifierMixin {
   Stream<String> get errorMsgStream => authViewModel.errorMsgStream;
 
   Future<void> login(String username, String password) =>
-      whileLoading(() => authViewModel.signin(username, password));
+      whileLoading(() async {
+        await authViewModel.signin(username, password);
+      });
 }
