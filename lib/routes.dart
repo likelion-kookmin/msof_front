@@ -65,6 +65,12 @@ class Routes {
   static List<String> get authRoutes =>
       allRoutes.where((route) => !nonAuthRoutes.contains(route)).toList();
 
+  /// Navigate to given routeName
+  static void toNamed(BuildContext context, String routeName) {
+    logger.d('toNamed ${routeName.route}');
+    return Beamer.of(context).beamToNamed(routeName.route);
+  }
+
   static final List<RouteInfo> _routeInfos = [
     RouteInfo(title: 'Home', route: home),
 

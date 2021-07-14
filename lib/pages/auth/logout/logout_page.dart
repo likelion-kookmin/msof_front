@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:msof_front/common/loading.dart';
 import 'package:msof_front/pages/auth_viewmodel.dart';
 import 'package:msof_front/routes.dart';
-import 'package:msof_front/utils/route_utils.dart';
 
 class LogoutPage extends HookWidget {
   const LogoutPage({Key? key}) : super(key: key);
@@ -15,7 +14,7 @@ class LogoutPage extends HookWidget {
 
     useEffect(() {
       authViewModel.logout().then(
-            (value) => RouteUtils.toNamed(context, Routes.initial),
+            (value) => Routes.toNamed(context, Routes.initial),
           );
     }, []);
     return Loading();
