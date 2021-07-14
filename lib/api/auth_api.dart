@@ -41,7 +41,7 @@ class AuthAPI extends AbstractAuthAPI {
   @override
   Future<Result<void>> signout() async {
     try {
-      await _client.post('/logout/', data: {});
+      await _client.post('/logout/');
       return Result.success(data: null);
     } catch (e) {
       return Result.failure(error: ApiExceptions.getDioException(e));
