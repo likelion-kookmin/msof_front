@@ -7,7 +7,7 @@ import 'package:msof_front/constants.dart';
 import 'package:msof_front/models/user/user.dart';
 
 final authApiProvider =
-    Provider.family<AuthAPI, Dio?>((ref, dio) => AuthAPI(dio: dio));
+    Provider.autoDispose<AuthAPI>((ref) => AuthAPI(ref.read));
 
 abstract class AbstractAuthAPI {
   Future<Result<TokenUser>> signin(String username, String password);
@@ -17,12 +17,10 @@ abstract class AbstractAuthAPI {
 }
 
 class AuthAPI extends AbstractAuthAPI {
-  late ApiClient _client;
-  final _baseUrl = '${Constants.of().baseApiUrl}/accounts/rest-auth';
+  final ApiClient _client;
+  static final _baseUrl = '${Constants.of().baseApiUrl}/accounts/rest-auth';
 
-  AuthAPI({Dio? dio}) {
-    _client = ApiClient(_baseUrl, dio);
-  }
+  AuthAPI(Reader read) : _client = read(apiClientProvider(_baseUrl));
 
   @override
   Future<Result<TokenUser>> signin(String username, String password) async {

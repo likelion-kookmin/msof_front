@@ -10,7 +10,7 @@ import 'package:msof_front/models/user/user.dart';
 import 'package:msof_front/services/local_storage_service.dart';
 
 final authServiceProvider = Provider<AuthService>((ref) {
-  final authApi = ref.read(authApiProvider(null));
+  final authApi = ref.read(authApiProvider);
   final localStorageService = ref.read(localStorageServiceProvider);
 
   return AuthService(

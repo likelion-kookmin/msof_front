@@ -2,9 +2,18 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 const _defaultConnectTimeout = Duration.millisecondsPerMinute;
 const _defaultReceiveTimeout = Duration.millisecondsPerMinute;
+
+final dioProvider = Provider((ref) => ApiClient.getDefaultDio());
+
+final apiClientProvider =
+    Provider.autoDispose.family<ApiClient, String>((ref, baseUrl) {
+  final dio = ref.read(dioProvider);
+  return ApiClient(baseUrl, dio);
+});
 
 class ApiClient {
   final String baseUrl;
