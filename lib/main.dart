@@ -1,3 +1,5 @@
+import 'dart:html' as html;
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -22,6 +24,22 @@ Future<void> main() async {
   // LocalStorageService 초기화
   final localStorageService = LocalStorageService();
   await localStorageService.init();
+
+  html.window.addEventListener('keydown', (event) {
+    final keyboardEvent = event as html.KeyboardEvent;
+    if (keyboardEvent.metaKey || keyboardEvent.ctrlKey) {
+      switch (keyboardEvent.key) {
+        case '=': // Prevent zooming in.
+        case '-': // Prevent zooming out.
+        case 'd': // Prevent bookmark on Firefox e.g.
+        case 'g': // Prevent open find on Firefox e.g.
+        case 'z': // Prevent restoring tab on Safari.
+        case 'u': // Prevent open view-source.
+          keyboardEvent.preventDefault();
+          break;
+      }
+    }
+  });
 
   runApp(
     ProviderScope(
@@ -79,8 +97,8 @@ class MSOF extends HookWidget {
         title: 'MutstackOverflow',
         theme: ThemeData(
           textTheme: GoogleFonts.nanumGothicTextTheme(),
-          primaryColor: likelionOrangePrimary,
-          primaryIconTheme: IconThemeData(color: textColor),
+          primarySwatch: createMaterialColor(likelionOrangePrimary),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         builder: (context, widget) => ResponsiveWrapper.builder(
           BouncingScrollWrapper.builder(context, widget!),
