@@ -13,7 +13,8 @@ class BeamerLocations extends BeamLocation {
 
   @override
   List<BeamPage> buildPages(BuildContext context, BeamState state) {
-    logger.d('${state.uri.pathSegments}, ${state.pathParameters}');
+    logger.d(
+        '${state.uri.pathSegments}, pathParameters: ${state.pathParameters}, data: ${state.data}');
     return [
       if (state.uri.pathSegments.contains(Routes.notFound))
         BeamPage(
@@ -45,6 +46,58 @@ class BeamerLocations extends BeamLocation {
           title: Routes.getRouteInfoByRouteName(Routes.home).title,
           child: HomePage(),
         ),
+
+      // Question
+      ..._buildQuestionPages(state),
     ];
+  }
+
+  /// Question pages
+  List<BeamPage> _buildQuestionPages(BeamState state) {
+    final pages = <BeamPage>[];
+
+    if (state.uri.pathSegments.contains(Routes.question)) {
+      if (state.pathParameters.containsKey(Routes.question.pathParameterId)) {
+        final questionId =
+            int.parse(state.pathParameters[Routes.question.pathParameterId]!);
+
+        /// Question detail page
+        pages.add(BeamPage(
+          key: ValueKey('${Routes.question}-$questionId'),
+          title: '${Routes.question}-$questionId',
+          child: QuestionDetail(questionId: questionId),
+        ));
+
+        /// Question update page
+        if (state.uri.pathSegments.contains(Routes.update)) {
+          pages.add(BeamPage(
+            key: ValueKey('${Routes.question}-${Routes.update}-$questionId'),
+            title: '${Routes.question}-${Routes.update}-$questionId',
+            child: QuestionCreatePage(questionId: questionId),
+          ));
+        }
+      }
+
+      /// Question create page
+      else if (state.uri.pathSegments.contains(Routes.create)) {
+        pages.add(BeamPage(
+          key: ValueKey('${Routes.question}-${Routes.create}'),
+          title: '${Routes.question}-${Routes.create}',
+          child: QuestionCreatePage(),
+        ));
+      }
+
+      /// Question list page
+      else {
+        //(state.uri.pathSegments.contains(Routes.questionList)) {
+        pages.add(BeamPage(
+          key: ValueKey('${Routes.questionList}'),
+          title: '${Routes.questionList}',
+          child: QuestionListPage(),
+        ));
+      }
+    }
+
+    return pages;
   }
 }
