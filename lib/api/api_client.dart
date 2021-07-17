@@ -7,7 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 const _defaultConnectTimeout = Duration.millisecondsPerMinute;
 const _defaultReceiveTimeout = Duration.millisecondsPerMinute;
 
-final dioProvider = Provider((ref) => ApiClient.getDefaultDio());
+final dioProvider = Provider<Dio>((ref) => throw UnimplementedError());
 
 final apiClientProvider =
     Provider.autoDispose.family<ApiClient, String>((ref, baseUrl) {
@@ -42,12 +42,12 @@ class ApiClient {
     if (kDebugMode) {
       dio.interceptors.add(
         LogInterceptor(
-          responseBody: false,
-          error: false,
+          responseBody: true,
+          error: true,
           requestHeader: false,
           responseHeader: false,
           request: false,
-          requestBody: false,
+          requestBody: true,
         ),
       );
     }

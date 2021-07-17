@@ -1,19 +1,32 @@
+import 'dart:convert';
 import 'dart:html' as html;
 
 import 'package:beamer/beamer.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:msof_front/api/api_client.dart';
 import 'package:msof_front/color.dart';
 import 'package:msof_front/locations.dart';
 import 'package:msof_front/pages/auth_viewmodel.dart';
 import 'package:msof_front/routes.dart';
 import 'package:msof_front/services/local_storage_service.dart';
 import 'package:msof_front/utils/screen_size_util.dart';
-import 'package:msof_front/utils/string_extensions.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:url_strategy/url_strategy.dart';
+
+// Must be top-level function
+dynamic _parseAndDecode(String response) {
+  return jsonDecode(response);
+}
+
+dynamic parseJson(String text) {
+  return compute(_parseAndDecode, text);
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,18 +38,23 @@ Future<void> main() async {
   final localStorageService = LocalStorageService();
   await localStorageService.init();
 
+  final dio = ApiClient.getDefaultDio();
+  (dio.transformer as DefaultTransformer).jsonDecodeCallback = parseJson;
+
   html.window.addEventListener('keydown', (event) {
-    final keyboardEvent = event as html.KeyboardEvent;
-    if (keyboardEvent.metaKey || keyboardEvent.ctrlKey) {
-      switch (keyboardEvent.key) {
-        case '=': // Prevent zooming in.
-        case '-': // Prevent zooming out.
-        case 'd': // Prevent bookmark on Firefox e.g.
-        case 'g': // Prevent open find on Firefox e.g.
-        case 'z': // Prevent restoring tab on Safari.
-        case 'u': // Prevent open view-source.
-          keyboardEvent.preventDefault();
-          break;
+    if (event.runtimeType == html.KeyboardEvent) {
+      final keyboardEvent = event as html.KeyboardEvent;
+      if (keyboardEvent.metaKey || keyboardEvent.ctrlKey) {
+        switch (keyboardEvent.key) {
+          case '=': // Prevent zooming in.
+          case '-': // Prevent zooming out.
+          case 'd': // Prevent bookmark on Firefox e.g.
+          case 'g': // Prevent open find on Firefox e.g.
+          case 'z': // Prevent restoring tab on Safari.
+          case 'u': // Prevent open view-source.
+            keyboardEvent.preventDefault();
+            break;
+        }
       }
     }
   });
@@ -45,6 +63,7 @@ Future<void> main() async {
     ProviderScope(
       overrides: [
         localStorageServiceProvider.overrideWithValue(localStorageService),
+        dioProvider.overrideWithValue(dio),
       ],
       child: MSOF(),
     ),
@@ -94,6 +113,18 @@ class MSOF extends HookWidget {
     return BeamerProvider(
       routerDelegate: routerDelegate,
       child: MaterialApp.router(
+        shortcuts: (() {
+          final shortcuts =
+              Map<LogicalKeySet, Intent>.from(WidgetsApp.defaultShortcuts);
+          if (kIsWeb) {
+            shortcuts.remove(LogicalKeySet(LogicalKeyboardKey.space));
+            shortcuts.remove(LogicalKeySet(LogicalKeyboardKey.arrowUp));
+            shortcuts.remove(LogicalKeySet(LogicalKeyboardKey.arrowDown));
+            shortcuts.remove(LogicalKeySet(LogicalKeyboardKey.arrowLeft));
+            shortcuts.remove(LogicalKeySet(LogicalKeyboardKey.arrowRight));
+          }
+          return shortcuts;
+        })(),
         title: 'MutstackOverflow',
         theme: ThemeData(
           textTheme: GoogleFonts.nanumGothicTextTheme(),
