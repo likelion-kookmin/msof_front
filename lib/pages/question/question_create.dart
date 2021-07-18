@@ -52,16 +52,15 @@ class _QuestionCreatePageState extends State<QuestionCreatePage> {
         Future.microtask(() {
           questionViewModel.detailQuestion(widget.questionId!).then((value) {
             final question = questionViewModel.question!;
-            if (widget.questionId != null) {
-              titleController.text = question.title ?? '';
-              contentController = ZefyrController(
-                  NotusDocument.fromJson(jsonDecode(question.content ?? '')));
-            } else {
-              contentController = ZefyrController();
-            }
+            titleController.text = question.title ?? '';
+            contentController = ZefyrController(
+                NotusDocument.fromJson(jsonDecode(question.content ?? '')));
             setState(() {});
           });
         });
+      } else {
+        contentController = ZefyrController();
+        setState(() {});
       }
     }, []);
 
