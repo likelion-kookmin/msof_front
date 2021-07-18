@@ -520,6 +520,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  notus_format:
+    dependency: transitive
+    description:
+      name: notus_format
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   package_config:
     dependency: transitive
     description:
@@ -625,6 +632,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  quill_format:
+    dependency: transitive
+    description:
+      name: quill_format
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   quiver:
     dependency: transitive
     description:
@@ -861,6 +875,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
+  zefyrka:
+    dependency: "direct main"
+    description:
+      name: zefyrka
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.8"
 sdks:
   dart: ">=2.13.0 <3.0.0"
   flutter: ">=2.0.0"

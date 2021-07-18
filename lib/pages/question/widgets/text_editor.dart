@@ -1,91 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart' hide Text;
-import 'package:msof_front/utils/logger.dart';
-
-import 'text_editor_content.dart';
-import 'text_editor_toolbar.dart';
+import 'package:msof_front/utils/hex_color.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:zefyrka/zefyrka.dart';
 
 class TextEditor extends StatelessWidget {
-  final double? height;
-  final bool readOnly;
-  final QuillController controller;
+  final ZefyrController controller;
   final FocusNode focusNode;
+  final bool readOnly;
+  final ScrollController? scrollController;
 
   const TextEditor({
     Key? key,
-    this.height,
-    this.readOnly = false,
     required this.controller,
     required this.focusNode,
+    this.readOnly = false,
+    this.scrollController,
   }) : super(key: key);
 
-  void _formatSection(String attribute) {
-    late final attributeObj;
-
-    switch (attribute) {
-      case 'bold':
-        attributeObj = Attribute.bold;
-        break;
-      case 'italic':
-        attributeObj = Attribute.italic;
-        break;
-      case 'underline':
-        attributeObj = Attribute.underline;
-        break;
-    }
-
-    if (controller.getSelectionStyle().attributes.keys.contains(attribute)) {
-      controller.formatSelection(Attribute.clone(attributeObj, null));
-    } else {
-      controller.formatSelection(attributeObj);
+  void _onLaunchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return Container(
-      color: Colors.white,
-      height: height ?? size.height * 0.4,
-      child: RawKeyboardListener(
-        focusNode: FocusNode(),
-        onKey: readOnly
-            ? null
-            : (event) {
-                if (event.data.isControlPressed) {
-                  if (event.character != null) {
-                    final character = event.character!.toLowerCase();
-                    logger.d(character);
-                    if (character == 'b') {
-                      _formatSection('bold');
-                    } else if (character == 'i') {
-                      _formatSection('italic');
-                    } else if (character == 'u') {
-                      _formatSection('underline');
-                    }
-                  }
-                }
-              },
-        child: Scaffold(
-          appBar: readOnly
-              ? null
-              : TextEditorToolbar(
-                  controller: controller,
+    final border = Border.all(color: Colors.grey.shade200);
+    final minHeight = MediaQuery.of(context).size.height * 0.4;
+    final toolbar = Row(
+      children: [
+        ZefyrToolbar.basic(controller: controller),
+      ],
+    );
+    return Column(
+      children: [
+        readOnly
+            ? Container()
+            : Container(
+                decoration: BoxDecoration(
+                  color: HexColor('#FAFAFA'),
+                  border: border,
                 ),
-          body: TextSelectionTheme(
-            data: TextSelectionThemeData(
-              cursorColor: readOnly ? Colors.white : null,
-            ),
-            child: TextEditorContent(
-              controller: controller,
-              focusNode: focusNode,
-              hintText: '',
-              readOnly: readOnly,
-            ),
+                child: toolbar,
+              ),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: border,
+          ),
+          constraints: BoxConstraints(
+            minHeight: minHeight,
+          ),
+          child: ZefyrEditor(
+            controller: controller,
+            focusNode: focusNode,
+            readOnly: readOnly,
+            showCursor: !readOnly,
+            scrollController: scrollController,
+            scrollable: false,
+            autofocus: true,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            onLaunchUrl: _onLaunchUrl,
           ),
         ),
-      ),
+      ],
     );
   }
 }

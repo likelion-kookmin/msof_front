@@ -61,19 +61,19 @@ class BeamerLocations extends BeamLocation {
         final questionId =
             int.parse(state.pathParameters[Routes.question.pathParameterId]!);
 
-        /// Question detail page
-        pages.add(BeamPage(
-          key: ValueKey('${Routes.question}-$questionId'),
-          title: '${Routes.question}-$questionId',
-          child: QuestionDetail(questionId: questionId),
-        ));
-
         /// Question update page
         if (state.uri.pathSegments.contains(Routes.update)) {
           pages.add(BeamPage(
             key: ValueKey('${Routes.question}-${Routes.update}-$questionId'),
             title: '${Routes.question}-${Routes.update}-$questionId',
             child: QuestionCreatePage(questionId: questionId),
+          ));
+        } else {
+          /// Question detail page
+          pages.add(BeamPage(
+            key: ValueKey('${Routes.question}-$questionId'),
+            title: '${Routes.question}-$questionId',
+            child: QuestionDetail(questionId: questionId),
           ));
         }
       }

@@ -2,14 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_quill/flutter_quill.dart' hide Text;
-import 'package:flutter_quill/widgets/simple_viewer.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:zefyrka/zefyrka.dart';
 
 import 'package:msof_front/api/api_client.dart';
 import 'package:msof_front/common/loading.dart';
 import 'package:msof_front/common/msof_scaffold.dart';
-import 'package:msof_front/models/question/question.dart';
 import 'package:msof_front/pages/auth_viewmodel.dart';
 import 'package:msof_front/pages/question/question_viewmodel.dart';
 import 'package:msof_front/pages/question/widgets/text_editor.dart';
@@ -25,55 +23,51 @@ class QuestionDetail extends StatefulHookWidget {
 }
 
 class _QuestionDetailState extends State<QuestionDetail> {
-  QuillController? quillController;
+  ZefyrController? contentController;
 
   @override
   void dispose() {
-    quillController!.dispose();
+    contentController?.dispose();
     super.dispose();
   }
 
-  List<Widget> _buildQuestion(focusNode, bool isLoading, Question? question) {
-    final widget = <Widget>[];
-    if (isLoading) {
-      widget.add(Loading());
-    } else if (question != null) {
-      final title = question.title;
-      final document = Document.fromJson(jsonDecode(question.content ?? ''));
-      quillController = QuillController(
-        document: document,
-        selection: const TextSelection.collapsed(offset: 0),
-      );
-
-      final questionJson = question.toJson();
-      questionJson.remove('title');
-      questionJson.remove('content');
-
-      widget.addAll(
-        [
-          Text(
-            '$title',
-            style: Theme.of(context).textTheme.headline4,
+  Widget _buildButton(context) {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Routes.toNamed(
+                context,
+                Routes.questionUpdate,
+                pathParameters: {
+                  Routes.question.pathParameterId: widget.questionId,
+                },
+              );
+            },
+            child: Text('Edit'),
           ),
-          SizedBox(height: 12),
-          ...questionJson.entries
-              .map((entry) => Text('${entry.key}: ${entry.value}'))
-              .toList(),
-          SizedBox(height: 12),
-          TextEditor(
-            height: 1000,
-            controller: quillController!,
-            focusNode: focusNode,
-            readOnly: true,
+          SizedBox(
+            width: 5,
+          ),
+          ElevatedButton(
+            onPressed: () {
+              context
+                  .read(questionViewModelProvider)
+                  .deleteQuestion(widget.questionId)
+                  .then(
+                    (value) => Routes.toNamed(
+                      context,
+                      Routes.questionList,
+                    ),
+                  );
+            },
+            child: Text('Delete'),
           ),
         ],
-      );
-    } else {
-      widget.add(Center(
-        child: Text('No question'),
-      ));
-    }
-    return widget;
+      ),
+    );
   }
 
   @override
@@ -81,60 +75,59 @@ class _QuestionDetailState extends State<QuestionDetail> {
     final authViewModel = useProvider(authViewModelProvider);
     final dio = useProvider(dioProvider);
     authViewModel.configAuthorizationHeader(dio);
-
     final questionViewModel = useProvider(questionViewModelProvider);
-    final focusNode = useFocusNode();
 
+    final focusNode = useFocusNode();
+    final scrollController = useScrollController();
+
+    // Fetch question
     useEffect(() {
-      Future.microtask(
-          () => questionViewModel.detailQuestion(widget.questionId));
+      Future.microtask(() {
+        questionViewModel.detailQuestion(widget.questionId).then((value) {
+          setState(() {
+            final question = questionViewModel.question!;
+            contentController = ZefyrController(
+                NotusDocument.fromJson(jsonDecode(question.content ?? '')));
+          });
+        });
+      });
     }, []);
 
+    final question = questionViewModel.question;
+
     return MSOFScaffold(
-      children: questionViewModel.isLoading
+      children: questionViewModel.isLoading && contentController == null
           ? [Loading()]
-          : [
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Routes.toNamed(
-                          context,
-                          Routes.questionUpdate,
-                          pathParameters: {
-                            Routes.question.pathParameterId: widget.questionId,
-                          },
-                        );
-                      },
-                      child: Text('Edit'),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        questionViewModel
-                            .deleteQuestion(widget.questionId)
-                            .then(
-                              (value) => Routes.toNamed(
-                                context,
-                                Routes.questionList,
-                              ),
-                            );
-                      },
-                      child: Text('Delete'),
-                    ),
-                  ],
-                ),
-              ),
-              ..._buildQuestion(
-                focusNode,
-                questionViewModel.isLoading,
-                questionViewModel.question,
-              ),
-            ],
+          : question == null
+              ? [Center(child: Text('No question'))]
+              : [
+                  ListView(
+                    shrinkWrap: true,
+                    controller: scrollController,
+                    children: [
+                      _buildButton(context),
+                      Text(
+                        '${question.title}',
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
+                      SizedBox(height: 12),
+                      ...question
+                          .toJson()
+                          .entries
+                          // .where((entry) =>
+                          // !['title', 'content'].contains(entry.key))
+                          .map((entry) => Text('${entry.key}: ${entry.value}'))
+                          .toList(),
+                      SizedBox(height: 12),
+                      TextEditor(
+                        controller: contentController!,
+                        focusNode: focusNode,
+                        readOnly: true,
+                        scrollController: scrollController,
+                      ),
+                    ],
+                  ),
+                ],
     );
   }
 }

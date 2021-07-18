@@ -40,9 +40,9 @@ class MSOFScaffold extends HookWidget {
     });
   }
 
-  Widget _buildChildren() {
-    final size = MediaQuery.of(useContext()).size;
-    final horizontalPadding = ScreenSizeUtil.onlyTouch(useContext())
+  Widget _buildChildren(context) {
+    final size = MediaQuery.of(context).size;
+    final horizontalPadding = ScreenSizeUtil.onlyTouch(context)
         ? const EdgeInsets.symmetric(horizontal: 8)
         : EdgeInsets.symmetric(
             horizontal: size.width * horizontalPaddingFactor / 2,
@@ -63,20 +63,16 @@ class MSOFScaffold extends HookWidget {
         extendBodyBehindAppBar: ScreenSizeUtil.overDesktop(context),
         endDrawer: _buildEndDrawer(),
         endDrawerEnableOpenDragGesture: ScreenSizeUtil.onlyMobile(context),
-        body: Column(
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  _buildAppBar(),
-                  divider,
-                  SizedBox(height: 30),
-                  body ?? _buildChildren(),
-                  MSOFFooter(),
-                ],
-              ),
-            ),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildAppBar(),
+              divider,
+              SizedBox(height: 30),
+              body ?? _buildChildren(context),
+              MSOFFooter(),
+            ],
+          ),
         ),
       ),
     );

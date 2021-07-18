@@ -74,6 +74,7 @@ class Routes {
     String routeName, {
     Map<String, dynamic>? data,
     Map<String, dynamic>? pathParameters,
+    bool replaceCurrent = false,
   }) {
     var route = routeName.route;
     if (pathParameters != null) {
@@ -82,7 +83,11 @@ class Routes {
       }
     }
     logger.d('toNamed $route, data: $data');
-    return Beamer.of(context).beamToNamed(route, data: data);
+    return Beamer.of(context).beamToNamed(
+      route,
+      data: data,
+      replaceCurrent: replaceCurrent,
+    );
   }
 
   static bool back(BuildContext context) {
