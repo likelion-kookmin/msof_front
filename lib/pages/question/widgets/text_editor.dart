@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:msof_front/utils/hex_color.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:msof_front/utils/launch_url.dart';
 import 'package:zefyrka/zefyrka.dart';
 
 class TextEditor extends StatelessWidget {
@@ -17,15 +17,9 @@ class TextEditor extends StatelessWidget {
     this.scrollController,
   }) : super(key: key);
 
-  void _onLaunchUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final border = Border.all(color: Colors.grey.shade200);
+    final border = readOnly ? null : Border.all(color: Colors.grey.shade200);
     final minHeight = MediaQuery.of(context).size.height * 0.4;
     final toolbar = Row(
       children: [
@@ -51,16 +45,24 @@ class TextEditor extends StatelessWidget {
           constraints: BoxConstraints(
             minHeight: minHeight,
           ),
-          child: ZefyrEditor(
-            controller: controller,
-            focusNode: focusNode,
-            readOnly: readOnly,
-            showCursor: !readOnly,
-            scrollController: scrollController,
-            scrollable: false,
-            autofocus: true,
-            padding: EdgeInsets.symmetric(horizontal: 8),
-            onLaunchUrl: _onLaunchUrl,
+          child: AbsorbPointer(
+            absorbing: !readOnly,
+            child: GestureDetector(
+              onTapUp: (detail) {
+                print('onTapup');
+              },
+              child: ZefyrEditor(
+                controller: controller,
+                focusNode: focusNode,
+                readOnly: readOnly,
+                showCursor: !readOnly,
+                scrollController: scrollController,
+                scrollable: false,
+                autofocus: true,
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                onLaunchUrl: launchURL,
+              ),
+            ),
           ),
         ),
       ],
