@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:msof_front/color.dart';
 import 'package:msof_front/common/divider.dart';
 import 'package:msof_front/routes.dart';
-import 'package:msof_front/utils/route_utils.dart';
 import 'package:msof_front/utils/screen_size_util.dart';
 
 class MSOFMenu {
@@ -18,11 +17,11 @@ class MSOFMenu {
               ),
             ),
           ]
-        : Routes.getRouteInfos(isAuthenticated).map((item) {
+        : Routes.getRouteInfosByIsAuthenticated(isAuthenticated).map((item) {
             return (item.type == RouteType.category)
                 ? divider
                 : TextButton(
-                    onPressed: () => RouteUtils.toNamed(context, item.route!),
+                    onPressed: () => Routes.toNamed(context, item.route!),
                     style: TextButton.styleFrom(
                       backgroundColor: Colors.transparent,
                       primary: likelionOrange,
@@ -85,7 +84,7 @@ class MSOFMobileMenu extends StatelessWidget {
           )
         : ListTile(
             title: Text(item.title),
-            onTap: () => RouteUtils.toNamed(context, item.route!),
+            onTap: () => Routes.toNamed(context, item.route!),
           );
   }
 
@@ -96,7 +95,7 @@ class MSOFMobileMenu extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           _buildDrawerHeader(),
-          ...Routes.getRouteInfos(isAuthenticated)
+          ...Routes.getRouteInfosByIsAuthenticated(isAuthenticated)
               .map((item) => _buildDrawerItem(context, item)),
         ],
       ),

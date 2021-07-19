@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:msof_front/models/user/user.dart';
-import 'package:msof_front/models/user/user_create.dart';
 import 'package:msof_front/pages/auth_viewmodel.dart';
 import 'package:msof_front/utils/loading_notifier_mixin.dart';
 

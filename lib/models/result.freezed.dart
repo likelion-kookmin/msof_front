@@ -107,6 +107,7 @@ class _$SuccessCopyWithImpl<T, $Res> extends _$ResultCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$Success<T> with DiagnosticableTreeMixin implements Success<T> {
   const _$Success({required this.data});
 
@@ -236,6 +237,7 @@ class _$FailureCopyWithImpl<T, $Res> extends _$ResultCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$Failure<T> with DiagnosticableTreeMixin implements Failure<T> {
   const _$Failure({required this.error});
 

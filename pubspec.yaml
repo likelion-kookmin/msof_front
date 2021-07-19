@@ -34,6 +34,8 @@ dependencies:
   auto_size_text: ^3.0.0-nullsafety.0
   carousel_slider: ^4.0.0-nullsafety.0
   responsive_framework:
+  flutter_quill: ^1.6.4
+  # zefyr: ^1.0.0-dev.2.0
 
   # 상태관리
   hooks_riverpod: ^0.14.0+3
@@ -46,9 +48,13 @@ dependencies:
   hive: ^2.0.4
   hive_flutter: ^1.0.0
   logger: ^1.0.0
-  url_launcher: ^6.0.2
+  url_launcher:
   url_strategy:
   beamer: ^0.14.1
+  filesystem_picker: ^2.0.0-nullsafety.0
+  path_provider: ^2.0.2
+  file_picker: ^3.0.3
+  zefyrka: ^1.0.8
 
 dev_dependencies:
   flutter_test:
