@@ -45,24 +45,16 @@ class TextEditor extends StatelessWidget {
           constraints: BoxConstraints(
             minHeight: minHeight,
           ),
-          child: AbsorbPointer(
-            absorbing: !readOnly,
-            child: GestureDetector(
-              onTapUp: (detail) {
-                print('onTapup');
-              },
-              child: ZefyrEditor(
-                controller: controller,
-                focusNode: focusNode,
-                readOnly: readOnly,
-                showCursor: !readOnly,
-                scrollController: scrollController,
-                scrollable: false,
-                autofocus: true,
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                onLaunchUrl: launchURL,
-              ),
-            ),
+          child: ZefyrEditor(
+            controller: controller,
+            focusNode: focusNode,
+            readOnly: readOnly,
+            showCursor: !readOnly,
+            scrollController: scrollController,
+            scrollable: false,
+            autofocus: false,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            onLaunchUrl: launchURL,
           ),
         ),
       ],

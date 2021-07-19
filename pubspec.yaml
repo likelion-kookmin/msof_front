@@ -54,7 +54,6 @@ dependencies:
   filesystem_picker: ^2.0.0-nullsafety.0
   path_provider: ^2.0.2
   file_picker: ^3.0.3
-  universal_html: ^2.0.8
   zefyrka: ^1.0.8
 
 dev_dependencies:

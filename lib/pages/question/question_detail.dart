@@ -84,11 +84,10 @@ class _QuestionDetailState extends State<QuestionDetail> {
     useEffect(() {
       Future.microtask(() {
         questionViewModel.detailQuestion(widget.questionId).then((value) {
-          setState(() {
-            final question = questionViewModel.question!;
-            contentController = ZefyrController(
-                NotusDocument.fromJson(jsonDecode(question.content ?? '')));
-          });
+          final question = questionViewModel.question!;
+          contentController = ZefyrController(
+              NotusDocument.fromJson(jsonDecode(question.content ?? '')));
+          setState(() {});
         });
       });
     }, []);
@@ -96,7 +95,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
     final question = questionViewModel.question;
 
     return MSOFScaffold(
-      children: questionViewModel.isLoading && contentController == null
+      children: questionViewModel.isLoading || contentController == null
           ? [Loading()]
           : question == null
               ? [Center(child: Text('No question'))]

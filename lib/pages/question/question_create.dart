@@ -65,7 +65,7 @@ class _QuestionCreatePageState extends State<QuestionCreatePage> {
     }, []);
 
     return MSOFScaffold(
-      children: questionViewModel.isLoading && contentController == null
+      children: questionViewModel.isLoading || contentController == null
           ? [Loading()]
           : [
               ListView(
