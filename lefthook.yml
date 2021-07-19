@@ -5,6 +5,7 @@ pre-push:
     #   glob: '*.dart'
     #   run: flutter test
     app-linter:
+      files: git diff --name-only HEAD @{push}
       glob: "*.dart"
       run: flutter analyze
 
