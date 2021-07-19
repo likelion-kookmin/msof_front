@@ -1,14 +1,15 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:msof_front/api/api_exceptions.dart';
 import 'package:msof_front/api/auth_api.dart';
 import 'package:msof_front/models/user/user.dart';
-import 'package:msof_front/models/user/user_create.dart';
 import 'package:msof_front/services/local_storage_service.dart';
 
-final authServiceProvider = ChangeNotifierProvider<AuthService>((ref) {
+final authServiceProvider = Provider<AuthService>((ref) {
   final authApi = ref.read(authApiProvider);
   final localStorageService = ref.read(localStorageServiceProvider);
 
@@ -40,9 +41,21 @@ class AuthService extends ChangeNotifier {
 
   TokenUser? _user;
 
-  bool get isAuthenticated => _user != null;
+  bool get isAuthenticated {
+    if (_user == null) loadUser();
+    return _user != null;
+  }
+
   TokenUser? get user => _user;
   Stream<String> get errorMsgStream => _errorMsgStream.stream;
+
+  /// Dio Authorization header 설정
+  void configAuthorizationHeader(Dio dio) {
+    if (user != null && user!.token != null) {
+      dio.options.headers
+          .addAll({HttpHeaders.authorizationHeader: 'JWT ${user!.token}'});
+    }
+  }
 
   /// Json 형식으로 User 저장
   Future<void> saveUser(TokenUser? user) async {

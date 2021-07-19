@@ -10,11 +10,15 @@ import 'package:msof_front/utils/screen_size_util.dart';
 import 'msof_appbar.dart';
 import 'msof_footer.dart';
 
-class MSOFScaffold extends StatelessWidget {
+class MSOFScaffold extends HookWidget {
+  final Widget? body;
   final List<Widget> children;
+  final double horizontalPaddingFactor;
 
   MSOFScaffold({
+    this.body,
     List<Widget>? children,
+    this.horizontalPaddingFactor = 0.3,
   }) : children = children ?? [];
 
   Widget _buildEndDrawer() {
@@ -36,30 +40,39 @@ class MSOFScaffold extends StatelessWidget {
     });
   }
 
+  Widget _buildChildren(context) {
+    final size = MediaQuery.of(context).size;
+    final horizontalPadding = ScreenSizeUtil.onlyTouch(context)
+        ? const EdgeInsets.symmetric(horizontal: 8)
+        : EdgeInsets.symmetric(
+            horizontal: size.width * horizontalPaddingFactor / 2,
+          );
+    return Padding(
+      padding: horizontalPadding,
+      child: Column(
+        children: children,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      extendBodyBehindAppBar: ScreenSizeUtil.overDesktop(context),
-      endDrawer: _buildEndDrawer(),
-      endDrawerEnableOpenDragGesture: ScreenSizeUtil.onlyMobile(context),
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  children: [
-                    _buildAppBar(),
-                    divider,
-                    SizedBox(height: 30),
-                    ...children,
-                    MSOFFooter(),
-                  ],
-                ),
-              ),
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        extendBodyBehindAppBar: ScreenSizeUtil.overDesktop(context),
+        endDrawer: _buildEndDrawer(),
+        endDrawerEnableOpenDragGesture: ScreenSizeUtil.onlyMobile(context),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildAppBar(),
+              divider,
+              SizedBox(height: 30),
+              body ?? _buildChildren(context),
+              MSOFFooter(),
+            ],
+          ),
         ),
       ),
     );

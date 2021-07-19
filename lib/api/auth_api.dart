@@ -5,9 +5,9 @@ import 'package:msof_front/api/api_client.dart';
 import 'package:msof_front/api/api_exceptions.dart';
 import 'package:msof_front/constants.dart';
 import 'package:msof_front/models/user/user.dart';
-import 'package:msof_front/models/user/user_create.dart';
 
-final authApiProvider = Provider<AuthAPI>((ref) => AuthAPI());
+final authApiProvider =
+    Provider.autoDispose<AuthAPI>((ref) => AuthAPI(ref.read));
 
 abstract class AbstractAuthAPI {
   Future<Result<TokenUser>> signin(String username, String password);
@@ -17,12 +17,10 @@ abstract class AbstractAuthAPI {
 }
 
 class AuthAPI extends AbstractAuthAPI {
-  late ApiClient _client;
-  final _baseUrl = '${Constants.of().baseApiUrl}/accounts/rest-auth';
+  final ApiClient _client;
+  static final _baseUrl = '${Constants.of().baseApiUrl}/accounts/rest-auth';
 
-  AuthAPI() {
-    _client = ApiClient(_baseUrl, Dio());
-  }
+  AuthAPI(Reader read) : _client = read(apiClientProvider(_baseUrl));
 
   @override
   Future<Result<TokenUser>> signin(String username, String password) async {
@@ -41,7 +39,7 @@ class AuthAPI extends AbstractAuthAPI {
   @override
   Future<Result<void>> signout() async {
     try {
-      await _client.post('/logout/', data: {});
+      await _client.post('/logout/');
       return Result.success(data: null);
     } catch (e) {
       return Result.failure(error: ApiExceptions.getDioException(e));
