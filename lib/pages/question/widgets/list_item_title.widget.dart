@@ -12,26 +12,26 @@ class QuestionListItemTitleWidget extends StatelessWidget {
     return MouseHover(
       opacityAnimation: false,
       child: GestureDetector(
-      onTap: () {
-        Routes.toNamed(
-          context,
-          Routes.questionDetail,
-          pathParameters: {
-            Routes.question.pathParameterId: id,
-          },
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Text(
-          '$title',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-            color: Colors.orange[600],
+        onTap: () {
+          Routes.toNamed(
+            context,
+            Routes.questionDetail,
+            pathParameters: {
+              Routes.question.pathParameterId: id,
+            },
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Text(
+            '$title',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: Colors.orange[600],
+            ),
           ),
         ),
-      ),
       ),
     );
   }
