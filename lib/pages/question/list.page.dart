@@ -26,7 +26,9 @@ class QuestionListPage extends HookWidget {
           },
           child: Text('Create'),
         ),
-        QuestionListWidget(isLoading: questionViewModel.isLoading, questions: questionViewModel.questions ?? []),
+        QuestionListWidget(
+            isLoading: questionViewModel.isLoading,
+            questions: questionViewModel.questions ?? []),
       ],
     );
   }
