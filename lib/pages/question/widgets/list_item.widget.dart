@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:msof_front/models/question/question.dart';
 import 'package:msof_front/pages/question/widgets/statistics.widget.dart';
-import 'package:msof_front/pages/question/widgets/title.widget.dart';
+import 'package:msof_front/pages/question/widgets/list_item_title.widget.dart';
 import 'package:characters/characters.dart';
 
 
@@ -24,7 +24,7 @@ class QuestionListItemWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              QuestionTitleWidget(
+              QuestionListItemTitleWidget(
                 id: question.id ?? -1,
                 title: question.title ?? '',
               ),
