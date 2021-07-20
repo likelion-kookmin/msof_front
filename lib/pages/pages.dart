@@ -7,4 +7,4 @@ export 'not_found_page.dart';
 // question
 export 'question/question_create.dart';
 export 'question/question_detail.dart';
-export 'question/question_list.dart';
+export 'question/list.page.dart';
