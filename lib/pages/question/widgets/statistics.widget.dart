@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:msof_front/models/question/question.dart';
 import 'package:msof_front/pages/question/widgets/statistic_item.widget.dart';
 
 class QuestionStatisticsWidget extends StatelessWidget {
   final Question question;
-  const QuestionStatisticsWidget({ Key? key, required this.question }) : super(key: key);
+  const QuestionStatisticsWidget({Key? key, required this.question})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

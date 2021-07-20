@@ -5,7 +5,9 @@ import 'package:msof_front/routes.dart';
 class QuestionListItemTitleWidget extends StatelessWidget {
   final String title;
   final int id;
-  const QuestionListItemTitleWidget({ Key? key, required this.id, required this.title }) : super(key: key);
+  const QuestionListItemTitleWidget(
+      {Key? key, required this.id, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -23,9 +23,10 @@ class QuestionListWidget extends StatelessWidget {
         itemCount: questions.length,
         itemBuilder: (context, index) {
           return Column(children: [
-            if(index == 0) Divider(
-              thickness: 0.5,
-            ),
+            if (index == 0)
+              Divider(
+                thickness: 0.5,
+              ),
             QuestionListItemWidget(question: questions[index]),
             Divider(
               thickness: 0.5,
