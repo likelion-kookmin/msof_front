@@ -42,11 +42,3 @@ class QuestionListItemWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-// ListTile(
-//       title: Text('${question.title}'),
-//       onTap: 
-//     );
-//   }
