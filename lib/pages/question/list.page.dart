@@ -21,7 +21,9 @@ class QuestionListPage extends HookWidget {
     return MSOFScaffold(
       children: [
         QuestionListHeader(),
-        QuestionListWidget(isLoading: questionViewModel.isLoading, questions: questionViewModel.questions ?? []),
+        QuestionListWidget(
+            isLoading: questionViewModel.isLoading,
+            questions: questionViewModel.questions ?? []),
       ],
     );
   }

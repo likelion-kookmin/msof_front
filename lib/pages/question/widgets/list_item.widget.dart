@@ -4,7 +4,6 @@ import 'package:msof_front/pages/question/widgets/statistics.widget.dart';
 import 'package:msof_front/pages/question/widgets/list_item_title.widget.dart';
 import 'package:characters/characters.dart';
 
-
 class QuestionListItemWidget extends StatelessWidget {
   final Question question;
 
