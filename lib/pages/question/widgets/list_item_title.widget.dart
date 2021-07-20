@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:msof_front/common/mouse_hover.dart';
 import 'package:msof_front/routes.dart';
 
 class QuestionListItemTitleWidget extends StatelessWidget {
@@ -8,7 +9,9 @@ class QuestionListItemTitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return MouseHover(
+      opacityAnimation: false,
+      child: GestureDetector(
       onTap: () {
         Routes.toNamed(
           context,
@@ -28,6 +31,7 @@ class QuestionListItemTitleWidget extends StatelessWidget {
             color: Colors.orange[600],
           ),
         ),
+      ),
       ),
     );
   }
