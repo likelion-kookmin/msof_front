@@ -174,25 +174,27 @@ class _$QuestionTearOff {
       @JsonKey(fromJson: parseDateTime) DateTime? created_at,
       @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
       @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-      int? author_id,
+      Map<String, dynamic>? comments,
       String? title,
       String? content,
       String? status,
       int? viewed_count,
       int? liked_count,
-      int? disliked_count}) {
+      int? disliked_count,
+      int? author}) {
     return _Question(
       id: id,
       created_at: created_at,
       updated_at: updated_at,
       deleted_at: deleted_at,
-      author_id: author_id,
+      comments: comments,
       title: title,
       content: content,
       status: status,
       viewed_count: viewed_count,
       liked_count: liked_count,
       disliked_count: disliked_count,
+      author: author,
     );
   }
 
@@ -213,13 +215,14 @@ mixin _$Question {
   DateTime? get updated_at => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseDateTime)
   DateTime? get deleted_at => throw _privateConstructorUsedError;
-  int? get author_id => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get comments => throw _privateConstructorUsedError;
   String? get title => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
   int? get viewed_count => throw _privateConstructorUsedError;
   int? get liked_count => throw _privateConstructorUsedError;
   int? get disliked_count => throw _privateConstructorUsedError;
+  int? get author => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -236,13 +239,14 @@ abstract class $QuestionCopyWith<$Res> {
       @JsonKey(fromJson: parseDateTime) DateTime? created_at,
       @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
       @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-      int? author_id,
+      Map<String, dynamic>? comments,
       String? title,
       String? content,
       String? status,
       int? viewed_count,
       int? liked_count,
-      int? disliked_count});
+      int? disliked_count,
+      int? author});
 }
 
 /// @nodoc
@@ -259,13 +263,14 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
     Object? created_at = freezed,
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
-    Object? author_id = freezed,
+    Object? comments = freezed,
     Object? title = freezed,
     Object? content = freezed,
     Object? status = freezed,
     Object? viewed_count = freezed,
     Object? liked_count = freezed,
     Object? disliked_count = freezed,
+    Object? author = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -284,10 +289,10 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
           ? _value.deleted_at
           : deleted_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      author_id: author_id == freezed
-          ? _value.author_id
-          : author_id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      comments: comments == freezed
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -312,6 +317,10 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
           ? _value.disliked_count
           : disliked_count // ignore: cast_nullable_to_non_nullable
               as int?,
+      author: author == freezed
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -326,13 +335,14 @@ abstract class _$QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
       @JsonKey(fromJson: parseDateTime) DateTime? created_at,
       @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
       @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-      int? author_id,
+      Map<String, dynamic>? comments,
       String? title,
       String? content,
       String? status,
       int? viewed_count,
       int? liked_count,
-      int? disliked_count});
+      int? disliked_count,
+      int? author});
 }
 
 /// @nodoc
@@ -350,13 +360,14 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
     Object? created_at = freezed,
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
-    Object? author_id = freezed,
+    Object? comments = freezed,
     Object? title = freezed,
     Object? content = freezed,
     Object? status = freezed,
     Object? viewed_count = freezed,
     Object? liked_count = freezed,
     Object? disliked_count = freezed,
+    Object? author = freezed,
   }) {
     return _then(_Question(
       id: id == freezed
@@ -375,10 +386,10 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
           ? _value.deleted_at
           : deleted_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      author_id: author_id == freezed
-          ? _value.author_id
-          : author_id // ignore: cast_nullable_to_non_nullable
-              as int?,
+      comments: comments == freezed
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -403,6 +414,10 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
           ? _value.disliked_count
           : disliked_count // ignore: cast_nullable_to_non_nullable
               as int?,
+      author: author == freezed
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -415,13 +430,14 @@ class _$_Question implements _Question {
       @JsonKey(fromJson: parseDateTime) this.created_at,
       @JsonKey(fromJson: parseDateTime) this.updated_at,
       @JsonKey(fromJson: parseDateTime) this.deleted_at,
-      this.author_id,
+      this.comments,
       this.title,
       this.content,
       this.status,
       this.viewed_count,
       this.liked_count,
-      this.disliked_count});
+      this.disliked_count,
+      this.author});
 
   factory _$_Question.fromJson(Map<String, dynamic> json) =>
       _$_$_QuestionFromJson(json);
@@ -438,7 +454,7 @@ class _$_Question implements _Question {
   @JsonKey(fromJson: parseDateTime)
   final DateTime? deleted_at;
   @override
-  final int? author_id;
+  final Map<String, dynamic>? comments;
   @override
   final String? title;
   @override
@@ -451,10 +467,12 @@ class _$_Question implements _Question {
   final int? liked_count;
   @override
   final int? disliked_count;
+  @override
+  final int? author;
 
   @override
   String toString() {
-    return 'Question(id: $id, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, author_id: $author_id, title: $title, content: $content, status: $status, viewed_count: $viewed_count, liked_count: $liked_count, disliked_count: $disliked_count)';
+    return 'Question(id: $id, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, comments: $comments, title: $title, content: $content, status: $status, viewed_count: $viewed_count, liked_count: $liked_count, disliked_count: $disliked_count, author: $author)';
   }
 
   @override
@@ -472,9 +490,9 @@ class _$_Question implements _Question {
             (identical(other.deleted_at, deleted_at) ||
                 const DeepCollectionEquality()
                     .equals(other.deleted_at, deleted_at)) &&
-            (identical(other.author_id, author_id) ||
+            (identical(other.comments, comments) ||
                 const DeepCollectionEquality()
-                    .equals(other.author_id, author_id)) &&
+                    .equals(other.comments, comments)) &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.content, content) ||
@@ -490,7 +508,9 @@ class _$_Question implements _Question {
                     .equals(other.liked_count, liked_count)) &&
             (identical(other.disliked_count, disliked_count) ||
                 const DeepCollectionEquality()
-                    .equals(other.disliked_count, disliked_count)));
+                    .equals(other.disliked_count, disliked_count)) &&
+            (identical(other.author, author) ||
+                const DeepCollectionEquality().equals(other.author, author)));
   }
 
   @override
@@ -500,13 +520,14 @@ class _$_Question implements _Question {
       const DeepCollectionEquality().hash(created_at) ^
       const DeepCollectionEquality().hash(updated_at) ^
       const DeepCollectionEquality().hash(deleted_at) ^
-      const DeepCollectionEquality().hash(author_id) ^
+      const DeepCollectionEquality().hash(comments) ^
       const DeepCollectionEquality().hash(title) ^
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(viewed_count) ^
       const DeepCollectionEquality().hash(liked_count) ^
-      const DeepCollectionEquality().hash(disliked_count);
+      const DeepCollectionEquality().hash(disliked_count) ^
+      const DeepCollectionEquality().hash(author);
 
   @JsonKey(ignore: true)
   @override
@@ -525,13 +546,14 @@ abstract class _Question implements Question {
       @JsonKey(fromJson: parseDateTime) DateTime? created_at,
       @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
       @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-      int? author_id,
+      Map<String, dynamic>? comments,
       String? title,
       String? content,
       String? status,
       int? viewed_count,
       int? liked_count,
-      int? disliked_count}) = _$_Question;
+      int? disliked_count,
+      int? author}) = _$_Question;
 
   factory _Question.fromJson(Map<String, dynamic> json) = _$_Question.fromJson;
 
@@ -547,7 +569,7 @@ abstract class _Question implements Question {
   @JsonKey(fromJson: parseDateTime)
   DateTime? get deleted_at => throw _privateConstructorUsedError;
   @override
-  int? get author_id => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get comments => throw _privateConstructorUsedError;
   @override
   String? get title => throw _privateConstructorUsedError;
   @override
@@ -560,6 +582,8 @@ abstract class _Question implements Question {
   int? get liked_count => throw _privateConstructorUsedError;
   @override
   int? get disliked_count => throw _privateConstructorUsedError;
+  @override
+  int? get author => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$QuestionCopyWith<_Question> get copyWith =>

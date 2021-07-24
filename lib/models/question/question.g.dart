@@ -26,13 +26,14 @@ _$_Question _$_$_QuestionFromJson(Map<String, dynamic> json) {
     created_at: parseDateTime(json['created_at'] as String?),
     updated_at: parseDateTime(json['updated_at'] as String?),
     deleted_at: parseDateTime(json['deleted_at'] as String?),
-    author_id: json['author_id'] as int?,
+    comments: json['comments'] as Map<String, dynamic>?,
     title: json['title'] as String?,
     content: json['content'] as String?,
     status: json['status'] as String?,
     viewed_count: json['viewed_count'] as int?,
     liked_count: json['liked_count'] as int?,
     disliked_count: json['disliked_count'] as int?,
+    author: json['author'] as int?,
   );
 }
 
@@ -42,11 +43,12 @@ Map<String, dynamic> _$_$_QuestionToJson(_$_Question instance) =>
       'created_at': instance.created_at?.toIso8601String(),
       'updated_at': instance.updated_at?.toIso8601String(),
       'deleted_at': instance.deleted_at?.toIso8601String(),
-      'author_id': instance.author_id,
+      'comments': instance.comments,
       'title': instance.title,
       'content': instance.content,
       'status': instance.status,
       'viewed_count': instance.viewed_count,
       'liked_count': instance.liked_count,
       'disliked_count': instance.disliked_count,
+      'author': instance.author,
     };

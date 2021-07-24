@@ -15,15 +15,15 @@ final questionApiProvider =
 abstract class AbstractQuestionAPI {
   Future<Result<MSOFResponse<Question>>> create(String title, String content);
   Future<Result<MSOFResponse>> delete(int id);
-  Future<Result<MSOFResponse<Question>>> detail(int id);
-  Future<Result<MSOFResponse<QuestionList>>> list();
+  Future<Result<Question>> detail(int id);
+  Future<Result<QuestionList>> list();
   Future<Result<MSOFResponse<void>>> update(
       int id, String title, String content);
 }
 
 class QuestionAPI extends AbstractQuestionAPI {
   final ApiClient _client;
-  static final _baseUrl = '${Constants.of().baseApiUrl}/question';
+  static final _baseUrl = '${Constants.of().baseApiUrl}/questions';
 
   QuestionAPI(Reader read) : _client = read(apiClientProvider(_baseUrl));
 
@@ -61,13 +61,10 @@ class QuestionAPI extends AbstractQuestionAPI {
   }
 
   @override
-  Future<Result<MSOFResponse<Question>>> detail(int id) async {
+  Future<Result<Question>> detail(int id) async {
     try {
       final response = await _client.get('/$id/');
-      final question = MSOFResponse<Question>.fromJson(
-        response,
-        fromJsonT: Question.fromJsonT,
-      );
+      final question = Question.fromJsonT(response);
       return Result.success(data: question);
     } catch (e) {
       return Result.failure(error: ApiExceptions.getDioException(e));
@@ -75,13 +72,10 @@ class QuestionAPI extends AbstractQuestionAPI {
   }
 
   @override
-  Future<Result<MSOFResponse<QuestionList>>> list() async {
+  Future<Result<QuestionList>> list() async {
     try {
       final response = await _client.get('/');
-      final questions = MSOFResponse<QuestionList>.fromJson(
-        response,
-        fromJsonT: QuestionList.fromJsonT,
-      );
+      final questions = QuestionList.fromJsonT(response);
       return Result.success(data: questions);
     } catch (e) {
       return Result.failure(error: ApiExceptions.getDioException(e));

@@ -13,9 +13,10 @@ class QuestionList with _$QuestionList {
   factory QuestionList.fromJson(Map<String, dynamic> json) =>
       _$QuestionListFromJson(json);
 
-  static QuestionList fromJsonT(Object? object) {
-    return QuestionList(
-        questions: (object as List).map((e) => Question.fromJson(e)).toList());
+  static QuestionList fromJsonT(Map<String, dynamic> json) {
+    var questions = <Question>[];
+    (json['results'] ?? []).forEach((e) => questions.add(Question.fromJson(e)));
+    return QuestionList(questions: questions);
   }
 }
 
@@ -26,13 +27,14 @@ class Question with _$Question {
     @JsonKey(fromJson: parseDateTime) DateTime? created_at,
     @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
     @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-    int? author_id,
+    Map<String, dynamic>? comments,
     String? title,
     String? content,
     String? status,
     int? viewed_count,
     int? liked_count,
     int? disliked_count,
+    int? author,
   }) = _Question;
 
   factory Question.fromJson(Map<String, dynamic> json) =>

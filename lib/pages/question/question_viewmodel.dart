@@ -27,7 +27,7 @@ class QuestionViewModel extends LoadingNotifierMixin {
       () => _questionApi.list().then(
             (value) => value.maybeWhen(
               success: (response) {
-                _questions = response.data!;
+                _questions = response;
               },
               failure: (error) => throw ApiExceptions.getErrorMessage(error),
               orElse: () {},
@@ -40,7 +40,7 @@ class QuestionViewModel extends LoadingNotifierMixin {
     return whileLoading(() => _questionApi.detail(id).then(
           (value) => value.maybeWhen(
             success: (response) {
-              question = response.data!;
+              question = response;
             },
             failure: (error) => throw ApiExceptions.getErrorMessage(error),
             orElse: () {},
