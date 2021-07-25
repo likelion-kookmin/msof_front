@@ -54,7 +54,7 @@ class QuestionViewModel extends LoadingNotifierMixin {
       () => _questionApi.create(title, content).then(
             (result) => result.maybeWhen(
               success: (response) {
-                question = response.data;
+                question = response;
               },
               failure: (error) => throw ApiExceptions.getErrorMessage(error),
               orElse: () {},
