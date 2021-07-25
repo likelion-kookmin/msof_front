@@ -1,7 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'question.dart';
+part of 'comment.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,20 +12,20 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-QuestionList _$QuestionListFromJson(Map<String, dynamic> json) {
-  return _QuestionList.fromJson(json);
+CommentList _$CommentListFromJson(Map<String, dynamic> json) {
+  return _CommentList.fromJson(json);
 }
 
 /// @nodoc
-class _$QuestionListTearOff {
-  const _$QuestionListTearOff();
+class _$CommentListTearOff {
+  const _$CommentListTearOff();
 
-  _QuestionList call(
+  _CommentList call(
       {int? count,
       String? next,
       String? previous,
-      List<Question>? results = const []}) {
-    return _QuestionList(
+      List<Comment>? results = const []}) {
+    return _CommentList(
       count: count,
       next: next,
       previous: previous,
@@ -33,43 +33,43 @@ class _$QuestionListTearOff {
     );
   }
 
-  QuestionList fromJson(Map<String, Object> json) {
-    return QuestionList.fromJson(json);
+  CommentList fromJson(Map<String, Object> json) {
+    return CommentList.fromJson(json);
   }
 }
 
 /// @nodoc
-const $QuestionList = _$QuestionListTearOff();
+const $CommentList = _$CommentListTearOff();
 
 /// @nodoc
-mixin _$QuestionList {
+mixin _$CommentList {
   int? get count => throw _privateConstructorUsedError;
   String? get next => throw _privateConstructorUsedError;
   String? get previous => throw _privateConstructorUsedError;
-  List<Question>? get results => throw _privateConstructorUsedError;
+  List<Comment>? get results => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $QuestionListCopyWith<QuestionList> get copyWith =>
+  $CommentListCopyWith<CommentList> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $QuestionListCopyWith<$Res> {
-  factory $QuestionListCopyWith(
-          QuestionList value, $Res Function(QuestionList) then) =
-      _$QuestionListCopyWithImpl<$Res>;
+abstract class $CommentListCopyWith<$Res> {
+  factory $CommentListCopyWith(
+          CommentList value, $Res Function(CommentList) then) =
+      _$CommentListCopyWithImpl<$Res>;
   $Res call(
-      {int? count, String? next, String? previous, List<Question>? results});
+      {int? count, String? next, String? previous, List<Comment>? results});
 }
 
 /// @nodoc
-class _$QuestionListCopyWithImpl<$Res> implements $QuestionListCopyWith<$Res> {
-  _$QuestionListCopyWithImpl(this._value, this._then);
+class _$CommentListCopyWithImpl<$Res> implements $CommentListCopyWith<$Res> {
+  _$CommentListCopyWithImpl(this._value, this._then);
 
-  final QuestionList _value;
+  final CommentList _value;
   // ignore: unused_field
-  final $Res Function(QuestionList) _then;
+  final $Res Function(CommentList) _then;
 
   @override
   $Res call({
@@ -94,31 +94,31 @@ class _$QuestionListCopyWithImpl<$Res> implements $QuestionListCopyWith<$Res> {
       results: results == freezed
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<Question>?,
+              as List<Comment>?,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$QuestionListCopyWith<$Res>
-    implements $QuestionListCopyWith<$Res> {
-  factory _$QuestionListCopyWith(
-          _QuestionList value, $Res Function(_QuestionList) then) =
-      __$QuestionListCopyWithImpl<$Res>;
+abstract class _$CommentListCopyWith<$Res>
+    implements $CommentListCopyWith<$Res> {
+  factory _$CommentListCopyWith(
+          _CommentList value, $Res Function(_CommentList) then) =
+      __$CommentListCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int? count, String? next, String? previous, List<Question>? results});
+      {int? count, String? next, String? previous, List<Comment>? results});
 }
 
 /// @nodoc
-class __$QuestionListCopyWithImpl<$Res> extends _$QuestionListCopyWithImpl<$Res>
-    implements _$QuestionListCopyWith<$Res> {
-  __$QuestionListCopyWithImpl(
-      _QuestionList _value, $Res Function(_QuestionList) _then)
-      : super(_value, (v) => _then(v as _QuestionList));
+class __$CommentListCopyWithImpl<$Res> extends _$CommentListCopyWithImpl<$Res>
+    implements _$CommentListCopyWith<$Res> {
+  __$CommentListCopyWithImpl(
+      _CommentList _value, $Res Function(_CommentList) _then)
+      : super(_value, (v) => _then(v as _CommentList));
 
   @override
-  _QuestionList get _value => super._value as _QuestionList;
+  _CommentList get _value => super._value as _CommentList;
 
   @override
   $Res call({
@@ -127,7 +127,7 @@ class __$QuestionListCopyWithImpl<$Res> extends _$QuestionListCopyWithImpl<$Res>
     Object? previous = freezed,
     Object? results = freezed,
   }) {
-    return _then(_QuestionList(
+    return _then(_CommentList(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -143,19 +143,19 @@ class __$QuestionListCopyWithImpl<$Res> extends _$QuestionListCopyWithImpl<$Res>
       results: results == freezed
           ? _value.results
           : results // ignore: cast_nullable_to_non_nullable
-              as List<Question>?,
+              as List<Comment>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_QuestionList implements _QuestionList {
-  const _$_QuestionList(
+class _$_CommentList implements _CommentList {
+  const _$_CommentList(
       {this.count, this.next, this.previous, this.results = const []});
 
-  factory _$_QuestionList.fromJson(Map<String, dynamic> json) =>
-      _$_$_QuestionListFromJson(json);
+  factory _$_CommentList.fromJson(Map<String, dynamic> json) =>
+      _$_$_CommentListFromJson(json);
 
   @override
   final int? count;
@@ -165,17 +165,17 @@ class _$_QuestionList implements _QuestionList {
   final String? previous;
   @JsonKey(defaultValue: const [])
   @override
-  final List<Question>? results;
+  final List<Comment>? results;
 
   @override
   String toString() {
-    return 'QuestionList(count: $count, next: $next, previous: $previous, results: $results)';
+    return 'CommentList(count: $count, next: $next, previous: $previous, results: $results)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _QuestionList &&
+        (other is _CommentList &&
             (identical(other.count, count) ||
                 const DeepCollectionEquality().equals(other.count, count)) &&
             (identical(other.next, next) ||
@@ -197,24 +197,24 @@ class _$_QuestionList implements _QuestionList {
 
   @JsonKey(ignore: true)
   @override
-  _$QuestionListCopyWith<_QuestionList> get copyWith =>
-      __$QuestionListCopyWithImpl<_QuestionList>(this, _$identity);
+  _$CommentListCopyWith<_CommentList> get copyWith =>
+      __$CommentListCopyWithImpl<_CommentList>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_QuestionListToJson(this);
+    return _$_$_CommentListToJson(this);
   }
 }
 
-abstract class _QuestionList implements QuestionList {
-  const factory _QuestionList(
+abstract class _CommentList implements CommentList {
+  const factory _CommentList(
       {int? count,
       String? next,
       String? previous,
-      List<Question>? results}) = _$_QuestionList;
+      List<Comment>? results}) = _$_CommentList;
 
-  factory _QuestionList.fromJson(Map<String, dynamic> json) =
-      _$_QuestionList.fromJson;
+  factory _CommentList.fromJson(Map<String, dynamic> json) =
+      _$_CommentList.fromJson;
 
   @override
   int? get count => throw _privateConstructorUsedError;
@@ -223,129 +223,137 @@ abstract class _QuestionList implements QuestionList {
   @override
   String? get previous => throw _privateConstructorUsedError;
   @override
-  List<Question>? get results => throw _privateConstructorUsedError;
+  List<Comment>? get results => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$QuestionListCopyWith<_QuestionList> get copyWith =>
+  _$CommentListCopyWith<_CommentList> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-Question _$QuestionFromJson(Map<String, dynamic> json) {
-  return _Question.fromJson(json);
+Comment _$CommentFromJson(Map<String, dynamic> json) {
+  return _Comment.fromJson(json);
 }
 
 /// @nodoc
-class _$QuestionTearOff {
-  const _$QuestionTearOff();
+class _$CommentTearOff {
+  const _$CommentTearOff();
 
-  _Question call(
+  _Comment call(
       {int? id,
+      List<Comment>? recomments,
       @JsonKey(fromJson: parseDateTime) DateTime? created_at,
       @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
       @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-      List<Comment>? comments,
-      String? title,
+      bool? selected,
       String? content,
       String? status,
-      int? viewed_count,
       int? liked_count,
       int? disliked_count,
-      int? author}) {
-    return _Question(
+      int? author,
+      int? question,
+      int? parent}) {
+    return _Comment(
       id: id,
+      recomments: recomments,
       created_at: created_at,
       updated_at: updated_at,
       deleted_at: deleted_at,
-      comments: comments,
-      title: title,
+      selected: selected,
       content: content,
       status: status,
-      viewed_count: viewed_count,
       liked_count: liked_count,
       disliked_count: disliked_count,
       author: author,
+      question: question,
+      parent: parent,
     );
   }
 
-  Question fromJson(Map<String, Object> json) {
-    return Question.fromJson(json);
+  Comment fromJson(Map<String, Object> json) {
+    return Comment.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Question = _$QuestionTearOff();
+const $Comment = _$CommentTearOff();
 
 /// @nodoc
-mixin _$Question {
+mixin _$Comment {
   int? get id => throw _privateConstructorUsedError;
+  List<Comment>? get recomments => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseDateTime)
   DateTime? get created_at => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseDateTime)
   DateTime? get updated_at => throw _privateConstructorUsedError;
   @JsonKey(fromJson: parseDateTime)
   DateTime? get deleted_at => throw _privateConstructorUsedError;
-  List<Comment>? get comments => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
+  bool? get selected => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
-  int? get viewed_count => throw _privateConstructorUsedError;
   int? get liked_count => throw _privateConstructorUsedError;
   int? get disliked_count => throw _privateConstructorUsedError;
   int? get author => throw _privateConstructorUsedError;
+  int? get question => throw _privateConstructorUsedError;
+  int? get parent => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $QuestionCopyWith<Question> get copyWith =>
-      throw _privateConstructorUsedError;
+  $CommentCopyWith<Comment> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $QuestionCopyWith<$Res> {
-  factory $QuestionCopyWith(Question value, $Res Function(Question) then) =
-      _$QuestionCopyWithImpl<$Res>;
+abstract class $CommentCopyWith<$Res> {
+  factory $CommentCopyWith(Comment value, $Res Function(Comment) then) =
+      _$CommentCopyWithImpl<$Res>;
   $Res call(
       {int? id,
+      List<Comment>? recomments,
       @JsonKey(fromJson: parseDateTime) DateTime? created_at,
       @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
       @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-      List<Comment>? comments,
-      String? title,
+      bool? selected,
       String? content,
       String? status,
-      int? viewed_count,
       int? liked_count,
       int? disliked_count,
-      int? author});
+      int? author,
+      int? question,
+      int? parent});
 }
 
 /// @nodoc
-class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
-  _$QuestionCopyWithImpl(this._value, this._then);
+class _$CommentCopyWithImpl<$Res> implements $CommentCopyWith<$Res> {
+  _$CommentCopyWithImpl(this._value, this._then);
 
-  final Question _value;
+  final Comment _value;
   // ignore: unused_field
-  final $Res Function(Question) _then;
+  final $Res Function(Comment) _then;
 
   @override
   $Res call({
     Object? id = freezed,
+    Object? recomments = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
-    Object? comments = freezed,
-    Object? title = freezed,
+    Object? selected = freezed,
     Object? content = freezed,
     Object? status = freezed,
-    Object? viewed_count = freezed,
     Object? liked_count = freezed,
     Object? disliked_count = freezed,
     Object? author = freezed,
+    Object? question = freezed,
+    Object? parent = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      recomments: recomments == freezed
+          ? _value.recomments
+          : recomments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>?,
       created_at: created_at == freezed
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -358,14 +366,10 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
           ? _value.deleted_at
           : deleted_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      comments: comments == freezed
-          ? _value.comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as List<Comment>?,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool?,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -374,10 +378,6 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      viewed_count: viewed_count == freezed
-          ? _value.viewed_count
-          : viewed_count // ignore: cast_nullable_to_non_nullable
-              as int?,
       liked_count: liked_count == freezed
           ? _value.liked_count
           : liked_count // ignore: cast_nullable_to_non_nullable
@@ -389,60 +389,74 @@ class _$QuestionCopyWithImpl<$Res> implements $QuestionCopyWith<$Res> {
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
+              as int?,
+      question: question == freezed
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
+              as int?,
+      parent: parent == freezed
+          ? _value.parent
+          : parent // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$QuestionCopyWith<$Res> implements $QuestionCopyWith<$Res> {
-  factory _$QuestionCopyWith(_Question value, $Res Function(_Question) then) =
-      __$QuestionCopyWithImpl<$Res>;
+abstract class _$CommentCopyWith<$Res> implements $CommentCopyWith<$Res> {
+  factory _$CommentCopyWith(_Comment value, $Res Function(_Comment) then) =
+      __$CommentCopyWithImpl<$Res>;
   @override
   $Res call(
       {int? id,
+      List<Comment>? recomments,
       @JsonKey(fromJson: parseDateTime) DateTime? created_at,
       @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
       @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-      List<Comment>? comments,
-      String? title,
+      bool? selected,
       String? content,
       String? status,
-      int? viewed_count,
       int? liked_count,
       int? disliked_count,
-      int? author});
+      int? author,
+      int? question,
+      int? parent});
 }
 
 /// @nodoc
-class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
-    implements _$QuestionCopyWith<$Res> {
-  __$QuestionCopyWithImpl(_Question _value, $Res Function(_Question) _then)
-      : super(_value, (v) => _then(v as _Question));
+class __$CommentCopyWithImpl<$Res> extends _$CommentCopyWithImpl<$Res>
+    implements _$CommentCopyWith<$Res> {
+  __$CommentCopyWithImpl(_Comment _value, $Res Function(_Comment) _then)
+      : super(_value, (v) => _then(v as _Comment));
 
   @override
-  _Question get _value => super._value as _Question;
+  _Comment get _value => super._value as _Comment;
 
   @override
   $Res call({
     Object? id = freezed,
+    Object? recomments = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
-    Object? comments = freezed,
-    Object? title = freezed,
+    Object? selected = freezed,
     Object? content = freezed,
     Object? status = freezed,
-    Object? viewed_count = freezed,
     Object? liked_count = freezed,
     Object? disliked_count = freezed,
     Object? author = freezed,
+    Object? question = freezed,
+    Object? parent = freezed,
   }) {
-    return _then(_Question(
+    return _then(_Comment(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
+      recomments: recomments == freezed
+          ? _value.recomments
+          : recomments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>?,
       created_at: created_at == freezed
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -455,14 +469,10 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
           ? _value.deleted_at
           : deleted_at // ignore: cast_nullable_to_non_nullable
               as DateTime?,
-      comments: comments == freezed
-          ? _value.comments
-          : comments // ignore: cast_nullable_to_non_nullable
-              as List<Comment>?,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
+      selected: selected == freezed
+          ? _value.selected
+          : selected // ignore: cast_nullable_to_non_nullable
+              as bool?,
       content: content == freezed
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -471,10 +481,6 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String?,
-      viewed_count: viewed_count == freezed
-          ? _value.viewed_count
-          : viewed_count // ignore: cast_nullable_to_non_nullable
-              as int?,
       liked_count: liked_count == freezed
           ? _value.liked_count
           : liked_count // ignore: cast_nullable_to_non_nullable
@@ -486,6 +492,14 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
+              as int?,
+      question: question == freezed
+          ? _value.question
+          : question // ignore: cast_nullable_to_non_nullable
+              as int?,
+      parent: parent == freezed
+          ? _value.parent
+          : parent // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -493,26 +507,29 @@ class __$QuestionCopyWithImpl<$Res> extends _$QuestionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Question implements _Question {
-  const _$_Question(
+class _$_Comment implements _Comment {
+  const _$_Comment(
       {this.id,
+      this.recomments,
       @JsonKey(fromJson: parseDateTime) this.created_at,
       @JsonKey(fromJson: parseDateTime) this.updated_at,
       @JsonKey(fromJson: parseDateTime) this.deleted_at,
-      this.comments,
-      this.title,
+      this.selected,
       this.content,
       this.status,
-      this.viewed_count,
       this.liked_count,
       this.disliked_count,
-      this.author});
+      this.author,
+      this.question,
+      this.parent});
 
-  factory _$_Question.fromJson(Map<String, dynamic> json) =>
-      _$_$_QuestionFromJson(json);
+  factory _$_Comment.fromJson(Map<String, dynamic> json) =>
+      _$_$_CommentFromJson(json);
 
   @override
   final int? id;
+  @override
+  final List<Comment>? recomments;
   @override
   @JsonKey(fromJson: parseDateTime)
   final DateTime? created_at;
@@ -523,33 +540,36 @@ class _$_Question implements _Question {
   @JsonKey(fromJson: parseDateTime)
   final DateTime? deleted_at;
   @override
-  final List<Comment>? comments;
-  @override
-  final String? title;
+  final bool? selected;
   @override
   final String? content;
   @override
   final String? status;
-  @override
-  final int? viewed_count;
   @override
   final int? liked_count;
   @override
   final int? disliked_count;
   @override
   final int? author;
+  @override
+  final int? question;
+  @override
+  final int? parent;
 
   @override
   String toString() {
-    return 'Question(id: $id, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, comments: $comments, title: $title, content: $content, status: $status, viewed_count: $viewed_count, liked_count: $liked_count, disliked_count: $disliked_count, author: $author)';
+    return 'Comment(id: $id, recomments: $recomments, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, selected: $selected, content: $content, status: $status, liked_count: $liked_count, disliked_count: $disliked_count, author: $author, question: $question, parent: $parent)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Question &&
+        (other is _Comment &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.recomments, recomments) ||
+                const DeepCollectionEquality()
+                    .equals(other.recomments, recomments)) &&
             (identical(other.created_at, created_at) ||
                 const DeepCollectionEquality()
                     .equals(other.created_at, created_at)) &&
@@ -559,19 +579,14 @@ class _$_Question implements _Question {
             (identical(other.deleted_at, deleted_at) ||
                 const DeepCollectionEquality()
                     .equals(other.deleted_at, deleted_at)) &&
-            (identical(other.comments, comments) ||
+            (identical(other.selected, selected) ||
                 const DeepCollectionEquality()
-                    .equals(other.comments, comments)) &&
-            (identical(other.title, title) ||
-                const DeepCollectionEquality().equals(other.title, title)) &&
+                    .equals(other.selected, selected)) &&
             (identical(other.content, content) ||
                 const DeepCollectionEquality()
                     .equals(other.content, content)) &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
-            (identical(other.viewed_count, viewed_count) ||
-                const DeepCollectionEquality()
-                    .equals(other.viewed_count, viewed_count)) &&
             (identical(other.liked_count, liked_count) ||
                 const DeepCollectionEquality()
                     .equals(other.liked_count, liked_count)) &&
@@ -579,55 +594,64 @@ class _$_Question implements _Question {
                 const DeepCollectionEquality()
                     .equals(other.disliked_count, disliked_count)) &&
             (identical(other.author, author) ||
-                const DeepCollectionEquality().equals(other.author, author)));
+                const DeepCollectionEquality().equals(other.author, author)) &&
+            (identical(other.question, question) ||
+                const DeepCollectionEquality()
+                    .equals(other.question, question)) &&
+            (identical(other.parent, parent) ||
+                const DeepCollectionEquality().equals(other.parent, parent)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(recomments) ^
       const DeepCollectionEquality().hash(created_at) ^
       const DeepCollectionEquality().hash(updated_at) ^
       const DeepCollectionEquality().hash(deleted_at) ^
-      const DeepCollectionEquality().hash(comments) ^
-      const DeepCollectionEquality().hash(title) ^
+      const DeepCollectionEquality().hash(selected) ^
       const DeepCollectionEquality().hash(content) ^
       const DeepCollectionEquality().hash(status) ^
-      const DeepCollectionEquality().hash(viewed_count) ^
       const DeepCollectionEquality().hash(liked_count) ^
       const DeepCollectionEquality().hash(disliked_count) ^
-      const DeepCollectionEquality().hash(author);
+      const DeepCollectionEquality().hash(author) ^
+      const DeepCollectionEquality().hash(question) ^
+      const DeepCollectionEquality().hash(parent);
 
   @JsonKey(ignore: true)
   @override
-  _$QuestionCopyWith<_Question> get copyWith =>
-      __$QuestionCopyWithImpl<_Question>(this, _$identity);
+  _$CommentCopyWith<_Comment> get copyWith =>
+      __$CommentCopyWithImpl<_Comment>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_QuestionToJson(this);
+    return _$_$_CommentToJson(this);
   }
 }
 
-abstract class _Question implements Question {
-  const factory _Question(
+abstract class _Comment implements Comment {
+  const factory _Comment(
       {int? id,
+      List<Comment>? recomments,
       @JsonKey(fromJson: parseDateTime) DateTime? created_at,
       @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
       @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-      List<Comment>? comments,
-      String? title,
+      bool? selected,
       String? content,
       String? status,
-      int? viewed_count,
       int? liked_count,
       int? disliked_count,
-      int? author}) = _$_Question;
+      int? author,
+      int? question,
+      int? parent}) = _$_Comment;
 
-  factory _Question.fromJson(Map<String, dynamic> json) = _$_Question.fromJson;
+  factory _Comment.fromJson(Map<String, dynamic> json) = _$_Comment.fromJson;
 
   @override
   int? get id => throw _privateConstructorUsedError;
+  @override
+  List<Comment>? get recomments => throw _privateConstructorUsedError;
   @override
   @JsonKey(fromJson: parseDateTime)
   DateTime? get created_at => throw _privateConstructorUsedError;
@@ -638,15 +662,11 @@ abstract class _Question implements Question {
   @JsonKey(fromJson: parseDateTime)
   DateTime? get deleted_at => throw _privateConstructorUsedError;
   @override
-  List<Comment>? get comments => throw _privateConstructorUsedError;
-  @override
-  String? get title => throw _privateConstructorUsedError;
+  bool? get selected => throw _privateConstructorUsedError;
   @override
   String? get content => throw _privateConstructorUsedError;
   @override
   String? get status => throw _privateConstructorUsedError;
-  @override
-  int? get viewed_count => throw _privateConstructorUsedError;
   @override
   int? get liked_count => throw _privateConstructorUsedError;
   @override
@@ -654,7 +674,11 @@ abstract class _Question implements Question {
   @override
   int? get author => throw _privateConstructorUsedError;
   @override
+  int? get question => throw _privateConstructorUsedError;
+  @override
+  int? get parent => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
-  _$QuestionCopyWith<_Question> get copyWith =>
+  _$CommentCopyWith<_Comment> get copyWith =>
       throw _privateConstructorUsedError;
 }

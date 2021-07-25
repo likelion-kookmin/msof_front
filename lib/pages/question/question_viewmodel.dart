@@ -13,7 +13,7 @@ class QuestionViewModel extends LoadingNotifierMixin {
   QuestionList? _questions;
   List<Question>? get questions {
     if (_questions != null) {
-      return _questions!.questions ?? [];
+      return _questions!.results ?? [];
     }
     return null;
   }

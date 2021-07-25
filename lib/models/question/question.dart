@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:msof_front/models/question/comment.dart';
 import 'package:msof_front/utils/json_converters.dart';
 
 part 'question.freezed.dart';
@@ -7,7 +8,10 @@ part 'question.g.dart';
 @freezed
 class QuestionList with _$QuestionList {
   const factory QuestionList({
-    @Default([]) List<Question>? questions,
+    int? count,
+    String? next,
+    String? previous,
+    @Default([]) List<Question>? results,
   }) = _QuestionList;
 
   factory QuestionList.fromJson(Map<String, dynamic> json) =>
@@ -16,7 +20,7 @@ class QuestionList with _$QuestionList {
   static QuestionList fromJsonT(Map<String, dynamic> json) {
     var questions = <Question>[];
     (json['results'] ?? []).forEach((e) => questions.add(Question.fromJson(e)));
-    return QuestionList(questions: questions);
+    return QuestionList(results: questions);
   }
 }
 
@@ -27,7 +31,7 @@ class Question with _$Question {
     @JsonKey(fromJson: parseDateTime) DateTime? created_at,
     @JsonKey(fromJson: parseDateTime) DateTime? updated_at,
     @JsonKey(fromJson: parseDateTime) DateTime? deleted_at,
-    Map<String, dynamic>? comments,
+    List<Comment>? comments,
     String? title,
     String? content,
     String? status,
