@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:msof_front/common/msof_scaffold.dart';
 import 'package:msof_front/pages/question/question_viewmodel.dart';
 import 'package:msof_front/pages/question/widgets/list.widget.dart';
-import 'package:msof_front/routes.dart';
+import 'package:msof_front/pages/question/widgets/header.widget.dart';
 
 class QuestionListPage extends HookWidget {
   const QuestionListPage({Key? key}) : super(key: key);
@@ -20,12 +20,7 @@ class QuestionListPage extends HookWidget {
 
     return MSOFScaffold(
       children: [
-        ElevatedButton(
-          onPressed: () {
-            Routes.toNamed(context, Routes.questionCreate);
-          },
-          child: Text('Create'),
-        ),
+        QuestionListHeader(),
         QuestionListWidget(
             isLoading: questionViewModel.isLoading,
             questions: questionViewModel.questions ?? []),
