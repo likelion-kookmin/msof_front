@@ -124,6 +124,7 @@ class _QuestionDetailState extends State<QuestionDetail> {
                         readOnly: true,
                         scrollController: scrollController,
                       ),
+                      Text('${question.comments}'),
                     ],
                   ),
                 ],
